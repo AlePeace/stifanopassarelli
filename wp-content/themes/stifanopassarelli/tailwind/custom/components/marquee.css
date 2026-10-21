@@ -9,3 +9,4 @@
 .sp-marquee__track { display: inline-flex; gap: 3rem; will-change: transform; }
 .sp-marquee__track span { font-family: var(--sp-serif); font-size: clamp(1.6rem, 4vw, 3rem); font-style: italic; }
 .sp-marquee__track span::after { content: "—"; margin-left: 3rem; opacity: 0.4; font-style: normal; }
+.sp-marquee__track { padding-right: 3rem; } /* giuntura col clone: stessa distanza tra "—" e il luogo successivo */

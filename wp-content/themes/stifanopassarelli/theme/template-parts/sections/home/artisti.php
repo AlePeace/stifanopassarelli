@@ -1,6 +1,6 @@
 <?php
 /**
- * 07 — Gli Artisti (\\ EMANUELE & CARLA).
+ * 08 — Gli Artisti (\\ EMANUELE & CARLA).
  *
  * @package stifanopassarelli
  */
@@ -25,7 +25,7 @@ $stifanopassarelli_artisti = array(
 <section id="artisti">
 	<div class="sp-section__head px-(--sp-gutter) pt-20">
 		<span class="sp-label"><?php stifanopassarelli_the_field( 'home_artisti_label', __( 'Emanuele & Carla', 'stifanopassarelli' ) ); ?></span>
-		<span class="sp-eyebrow"><?php stifanopassarelli_the_field( 'home_artisti_eyebrow', __( '05 — Gli Artisti', 'stifanopassarelli' ) ); ?></span>
+		<span class="sp-eyebrow"><?php stifanopassarelli_the_field( 'home_artisti_eyebrow', __( '06 — Gli Artisti', 'stifanopassarelli' ) ); ?></span>
 	</div>
 	<div class="sp-artists">
 		<?php foreach ( $stifanopassarelli_artisti as $stifanopassarelli_n => $stifanopassarelli_artista ) : ?>

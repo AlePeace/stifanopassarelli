@@ -1,6 +1,6 @@
 <?php
 /**
- * 06 — Antologia (\\ MEMORIA E FRAMMENTI): carosello Swiper con slat reveal
+ * 07 — Antologia (\\ MEMORIA E FRAMMENTI): carosello Swiper con slat reveal
  * + indice delle opere con immagine al cursore (ref septiembre).
  *
  * @package stifanopassarelli
@@ -12,7 +12,7 @@ $stifanopassarelli_indice = stifanopassarelli_opere_indice();
 	<div class="sp-container">
 		<div class="sp-section__head">
 			<span class="sp-label"><?php stifanopassarelli_the_field( 'home_antologia_label', __( 'Memoria e Frammenti', 'stifanopassarelli' ) ); ?></span>
-			<span class="sp-eyebrow"><?php stifanopassarelli_the_field( 'home_antologia_eyebrow', __( '04 — Antologia · le altre opere', 'stifanopassarelli' ) ); ?></span>
+			<span class="sp-eyebrow"><?php stifanopassarelli_the_field( 'home_antologia_eyebrow', __( '05 — Antologia · le altre opere', 'stifanopassarelli' ) ); ?></span>
 		</div>
 	</div>
 	<div class="sp-swiper">

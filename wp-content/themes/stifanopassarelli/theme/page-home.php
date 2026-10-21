@@ -2,7 +2,8 @@
 /**
  * Template della homepage (pagina con slug `home`).
  *
- * Ordine delle sezioni come nel documento "Struttura One-Page".
+ * Ordine delle sezioni come nel documento "Struttura One-Page", più Mosaico e
+ * Accademia richiesti dal cliente (ottobre 2026).
  *
  * @package stifanopassarelli
  */
@@ -15,10 +16,12 @@ $stifanopassarelli_home_sections = array(
 	'work-in-progress',
 	'il-rito',
 	'negativo',
-	'ordinarium',
+	'marmo',
+	'mosaico',
 	'antologia',
 	'artisti',
 	'discover',
+	'accademia',
 	'contatti',
 );
 ?>

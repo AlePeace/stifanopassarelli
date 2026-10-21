@@ -269,12 +269,16 @@ function stifanopassarelli_nav_items() {
 			'label' => __( 'Work in progress', 'stifanopassarelli' ),
 		),
 		array(
-			'href'  => stifanopassarelli_home_anchor( 'ordinarium' ),
+			'href'  => stifanopassarelli_home_anchor( 'marmo' ),
 			'label' => __( 'Catalogo', 'stifanopassarelli' ),
 		),
 		array(
 			'href'  => stifanopassarelli_home_anchor( 'artisti' ),
 			'label' => __( 'Emanuele & Carla', 'stifanopassarelli' ),
+		),
+		array(
+			'href'  => stifanopassarelli_home_anchor( 'accademia' ),
+			'label' => __( 'Accademia', 'stifanopassarelli' ),
 		),
 		array(
 			'href'  => stifanopassarelli_home_anchor( 'contatti' ),

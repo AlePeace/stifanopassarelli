@@ -1,0 +1,35 @@
+/**
+ * Il Mosaico: titolo verticale e colonne sfalsate con numerazione grande
+ * (ref editoriale Pinterest del cliente). Su mobile riga a scorrimento
+ * orizzontale con scroll-snap.
+ */
+
+.sp-mosaic__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 4fr); gap: clamp(2rem, 4vw, 4rem); }
+.sp-mosaic__aside { display: flex; flex-direction: column; justify-content: space-between; gap: 2.5rem; }
+.sp-mosaic__title {
+  font-size: clamp(2.4rem, 4.2vw, 4.4rem); line-height: 1.04;
+  writing-mode: vertical-rl; transform: rotate(180deg); align-self: flex-start;
+}
+.sp-mosaic__title em { color: var(--sp-gold); }
+.sp-mosaic__intro { max-width: 30ch; font-size: 0.95rem; line-height: 1.6; opacity: 0.8; }
+
+.sp-mosaic__works { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: start; }
+.sp-mosaic__work { padding: 0 clamp(1rem, 1.6vw, 2rem); border-left: 1px solid rgba(20, 17, 14, 0.12); }
+.sp-mosaic__work:nth-child(even) { margin-top: clamp(4rem, 10vw, 9rem); }
+.sp-mosaic__num { display: block; font-family: var(--sp-serif); font-size: clamp(2.6rem, 4.5vw, 4.6rem); line-height: 1; margin-bottom: 1.2rem; }
+.sp-mosaic__name { font-size: 1.35rem; line-height: 1.15; margin-top: 1.1rem; }
+.sp-mosaic__sub { font-family: var(--sp-serif); font-style: italic; font-size: 0.98rem; margin-top: 0.35rem; opacity: 0.8; }
+.sp-mosaic__meta { font-family: var(--sp-mono); font-size: 0.66rem; line-height: 1.7; letter-spacing: 0.06em; margin-top: 0.8rem; opacity: 0.6; }
+
+@media (max-width: 1023px) {
+  .sp-mosaic__grid { grid-template-columns: 1fr; }
+  .sp-mosaic__title { writing-mode: horizontal-tb; transform: none; font-size: clamp(2.2rem, 7vw, 3.4rem); }
+  .sp-mosaic__works {
+    display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--sp-gutter); scrollbar-width: none;
+    margin: 0 calc(-1 * var(--sp-gutter)); padding: 0 var(--sp-gutter) 1rem;
+  }
+  .sp-mosaic__works::-webkit-scrollbar { display: none; }
+  .sp-mosaic__work { flex: 0 0 min(72vw, 340px); scroll-snap-align: start; }
+  .sp-mosaic__work:first-child { padding-left: 0; border-left: 0; }
+  .sp-mosaic__work:nth-child(even) { margin-top: 3rem; }
+}

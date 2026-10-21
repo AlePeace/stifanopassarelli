@@ -9,6 +9,7 @@
 	/* Colori brand → token di tailwind-theme.css */
 	--sp-bone: var(--color-bone); /* fondo gesso / travertino */
 	--sp-bone-2: var(--color-bone-2); /* fondo alternativo */
+	--sp-paper: var(--color-paper); /* fondo chiaro dell'Accademia */
 	--sp-ink: var(--color-ink); /* nero caldo (marmo bruciato) */
 	--sp-ink-2: var(--color-ink-2);
 	--sp-gold: var(--color-gold); /* oro mosaico */

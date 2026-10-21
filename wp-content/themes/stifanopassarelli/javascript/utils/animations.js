@@ -553,3 +553,19 @@ export function initMarquee(scope) {
 		clones.forEach((clone) => clone.remove());
 	};
 }
+
+/* --------------------------- FAQ (Accademia): <details> che cambiano altezza */
+export function initDetails(scope) {
+	const items = scope.querySelectorAll('details');
+	let refreshTimer = null;
+	const onToggle = () => {
+		clearTimeout(refreshTimer);
+		refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 100);
+	};
+	items.forEach((item) => item.addEventListener('toggle', onToggle));
+
+	return () => {
+		clearTimeout(refreshTimer);
+		items.forEach((item) => item.removeEventListener('toggle', onToggle));
+	};
+}

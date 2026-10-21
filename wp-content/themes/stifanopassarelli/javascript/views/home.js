@@ -7,15 +7,21 @@ import {
 	initIndexHover,
 	initNegative,
 	initMarquee,
+	initDetails,
 } from '../utils/animations.js';
 import { initCarousels } from '../utils/slider.js';
+import { initForms } from '../utils/forms.js';
 
 let cleanups = [];
 
 export default {
 	namespace: 'home',
-	afterEnter({ next }) {
+	afterEnter({ next, trigger }) {
 		const scope = next.container;
+		// Al primo caricamento (trigger 'barba') i form li inizializza CF7.
+		if (trigger !== 'barba') {
+			initForms(scope);
+		}
 		// Stesso ordine del boot della bozza.
 		cleanups = [
 			initHero(scope),
@@ -27,6 +33,7 @@ export default {
 			initNegative(scope),
 			initMarquee(scope),
 			initCarousels(scope),
+			initDetails(scope),
 		];
 	},
 	beforeLeave() {

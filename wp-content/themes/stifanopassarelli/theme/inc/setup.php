@@ -1,8 +1,8 @@
 <?php
 /**
  * Setup all'attivazione del tema: pagine "Home" (homepage statica, template
- * page-home.php per slug) e "Impostazioni globali", collezioni Ordinarium e
- * Antologia. Crea solo ciò che manca e non tocca una homepage già impostata.
+ * page-home.php per slug) e "Impostazioni globali", collezioni Marmo, Mosaico
+ * e Antologia. Crea solo ciò che manca e non tocca una homepage già impostata.
  *
  * @package stifanopassarelli
  */

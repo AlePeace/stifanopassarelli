@@ -1,6 +1,6 @@
 <?php
 /**
- * 09 — Contatti (\\ RISONANZE): form + laboratorio, galleria e social.
+ * 11 — Contatti (\\ RISONANZE): form + laboratorio, galleria e social.
  * Con lo shortcode del form vuoto resta il form della bozza, che non invia.
  *
  * @package stifanopassarelli
@@ -12,7 +12,7 @@ $stifanopassarelli_form = stifanopassarelli_field( 'home_contatti_form' );
 	<div class="sp-container relative z-[2]">
 		<div class="sp-section__head">
 			<span class="sp-label"><?php stifanopassarelli_the_field( 'home_contatti_label', __( 'Risonanze', 'stifanopassarelli' ) ); ?></span>
-			<span class="sp-eyebrow"><?php stifanopassarelli_the_field( 'home_contatti_eyebrow', __( '07 — Contatti & Gallerie', 'stifanopassarelli' ) ); ?></span>
+			<span class="sp-eyebrow"><?php stifanopassarelli_the_field( 'home_contatti_eyebrow', __( '09 — Contatti & Gallerie', 'stifanopassarelli' ) ); ?></span>
 		</div>
 		<div class="sp-contact">
 			<?php if ( $stifanopassarelli_form ) : ?>

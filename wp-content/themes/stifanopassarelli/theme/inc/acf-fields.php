@@ -171,7 +171,7 @@ function stifanopassarelli_wip_columns() {
 }
 
 /**
- * Field group della homepage: un tab per sezione. Le opere di Ordinarium,
+ * Field group della homepage: un tab per sezione. Le opere di Marmo, Mosaico,
  * Antologia e dell'indice arrivano dal CPT "Opere" (inc/opere.php).
  */
 function stifanopassarelli_register_home_fields() {
@@ -236,33 +236,47 @@ function stifanopassarelli_register_home_fields() {
 					stifanopassarelli_acf( 'home_negativo_hint_touch', __( 'Indicazione touch', 'stifanopassarelli' ), 'text', __( 'tocca — svela il negativo', 'stifanopassarelli' ) ),
 					stifanopassarelli_acf( 'home_negativo_lente', __( 'Etichetta nella lente (touch)', 'stifanopassarelli' ), 'text', __( 'Click', 'stifanopassarelli' ) ),
 
-					stifanopassarelli_acf_tab( 'home_ordinarium', __( 'Ordinarium', 'stifanopassarelli' ) ),
-					stifanopassarelli_acf( 'home_ordinarium_label', __( 'Label', 'stifanopassarelli' ), 'text', __( 'Ordinarium: il Sacro Ordinario', 'stifanopassarelli' ) ),
-					stifanopassarelli_acf( 'home_ordinarium_titolo', __( 'Titolo', 'stifanopassarelli' ), 'textarea', __( "Il cortocircuito\nmaterico", 'stifanopassarelli' ), array( 'new_lines' => 'br' ) ),
-					stifanopassarelli_acf( 'home_ordinarium_eyebrow', __( 'Eyebrow', 'stifanopassarelli' ), 'textarea', __( "03 — La Collezione · marmo, bronzo e mosaico che piegano la permanenza all'intimità quotidiana", 'stifanopassarelli' ) ),
+					stifanopassarelli_acf_tab( 'home_marmo', __( 'Il Marmo', 'stifanopassarelli' ) ),
+					stifanopassarelli_acf( 'home_marmo_label', __( 'Label', 'stifanopassarelli' ), 'text', __( 'La materia bianca: il marmo', 'stifanopassarelli' ) ),
+					stifanopassarelli_acf( 'home_marmo_titolo', __( 'Titolo', 'stifanopassarelli' ), 'textarea', __( "Il marmo,\nsottrazione e luce", 'stifanopassarelli' ), array( 'new_lines' => 'br' ) ),
+					stifanopassarelli_acf( 'home_marmo_eyebrow', __( 'Eyebrow', 'stifanopassarelli' ), 'text', __( '03 — Il Marmo', 'stifanopassarelli' ) ),
+					stifanopassarelli_acf( 'home_marmo_testo', __( 'Testo', 'stifanopassarelli' ), 'textarea', __( "La pietra di Carrara come foglio bianco su cui scavare il silenzio. La Sottrazione incontra la forma pura. La carne, l'anima e il pensiero emergono dal blocco attraverso il gesto crudo dello scalpello.", 'stifanopassarelli' ) ),
 					array(
-						'key'     => 'field_home_ordinarium_note',
+						'key'     => 'field_home_marmo_note',
 						'label'   => __( 'Opere', 'stifanopassarelli' ),
 						'name'    => '',
 						'type'    => 'message',
-						'message' => __( 'I pannelli sono le Opere della collezione "Ordinarium" (menu Opere), in ordine di "Ordine" negli attributi. Finché non ce ne sono si vedono le 4 opere della bozza.', 'stifanopassarelli' ),
+						'message' => __( 'I pannelli sono le Opere della collezione "Marmo" (menu Opere), in ordine di "Ordine" negli attributi. Senza opere la sezione non compare.', 'stifanopassarelli' ),
+					),
+
+					stifanopassarelli_acf_tab( 'home_mosaico', __( 'Il Mosaico', 'stifanopassarelli' ) ),
+					stifanopassarelli_acf( 'home_mosaico_label', __( 'Label', 'stifanopassarelli' ), 'text', __( 'La dedizione: il mosaico', 'stifanopassarelli' ) ),
+					stifanopassarelli_acf( 'home_mosaico_eyebrow', __( 'Eyebrow', 'stifanopassarelli' ), 'text', __( '04 — Il Mosaico', 'stifanopassarelli' ) ),
+					stifanopassarelli_acf( 'home_mosaico_titolo', __( 'Titolo verticale (ammette <em>, in oro)', 'stifanopassarelli' ), 'textarea', __( "Carla Passarelli,\nil rito della <em>tessera</em>", 'stifanopassarelli' ), array( 'new_lines' => 'br' ) ),
+					stifanopassarelli_acf( 'home_mosaico_testo', __( 'Testo', 'stifanopassarelli' ), 'textarea', __( 'Dalla rigida disciplina bizantina appresa a Ravenna alla libertà espressiva nel laboratorio di Acquavella. Un rito lento di ricomposizione del mondo.', 'stifanopassarelli' ) ),
+					array(
+						'key'     => 'field_home_mosaico_note',
+						'label'   => __( 'Opere', 'stifanopassarelli' ),
+						'name'    => '',
+						'type'    => 'message',
+						'message' => __( 'Le colonne sono le Opere della collezione "Mosaico" (menu Opere), in ordine di "Ordine" negli attributi: le foto sono ritagliate in 4:5 (meglio verticali). Senza opere la sezione non compare.', 'stifanopassarelli' ),
 					),
 
 					stifanopassarelli_acf_tab( 'home_antologia', __( 'Antologia', 'stifanopassarelli' ) ),
 					stifanopassarelli_acf( 'home_antologia_label', __( 'Label', 'stifanopassarelli' ), 'text', __( 'Memoria e Frammenti', 'stifanopassarelli' ) ),
-					stifanopassarelli_acf( 'home_antologia_eyebrow', __( 'Eyebrow', 'stifanopassarelli' ), 'text', __( '04 — Antologia · le altre opere', 'stifanopassarelli' ) ),
+					stifanopassarelli_acf( 'home_antologia_eyebrow', __( 'Eyebrow', 'stifanopassarelli' ), 'text', __( '05 — Antologia · le altre opere', 'stifanopassarelli' ) ),
 					stifanopassarelli_acf( 'home_antologia_indice_label', __( "Label dell'indice", 'stifanopassarelli' ), 'text', __( 'Indice delle opere', 'stifanopassarelli' ) ),
 					array(
 						'key'     => 'field_home_antologia_note',
 						'label'   => __( 'Opere', 'stifanopassarelli' ),
 						'name'    => '',
 						'type'    => 'message',
-						'message' => __( 'Il carosello mostra le Opere della collezione "Antologia"; l\'indice tutte le Opere con "Mostra nell\'indice" attivo (prima Ordinarium, poi Antologia).', 'stifanopassarelli' ),
+						'message' => __( 'Il carosello mostra le Opere della collezione "Antologia"; l\'indice tutte le Opere con "Mostra nell\'indice" attivo (Marmo, Mosaico, poi Antologia).', 'stifanopassarelli' ),
 					),
 
 					stifanopassarelli_acf_tab( 'home_artisti', __( 'Gli Artisti', 'stifanopassarelli' ) ),
 					stifanopassarelli_acf( 'home_artisti_label', __( 'Label', 'stifanopassarelli' ), 'text', __( 'Emanuele & Carla', 'stifanopassarelli' ) ),
-					stifanopassarelli_acf( 'home_artisti_eyebrow', __( 'Eyebrow', 'stifanopassarelli' ), 'text', __( '05 — Gli Artisti', 'stifanopassarelli' ) ),
+					stifanopassarelli_acf( 'home_artisti_eyebrow', __( 'Eyebrow', 'stifanopassarelli' ), 'text', __( '06 — Gli Artisti', 'stifanopassarelli' ) ),
 					stifanopassarelli_acf( 'home_artisti_1_ruolo', __( 'Emanuele · Ruolo', 'stifanopassarelli' ), 'text', __( 'Sottrazione — marmo & bronzo', 'stifanopassarelli' ) ),
 					stifanopassarelli_acf( 'home_artisti_1_nome', __( 'Emanuele · Nome', 'stifanopassarelli' ), 'text', __( 'Emanuele Stifano', 'stifanopassarelli' ) ),
 					stifanopassarelli_acf( 'home_artisti_1_bio', __( 'Emanuele · Bio', 'stifanopassarelli' ), 'textarea', __( 'Radici a Pellare, maturazione tra Carrara, Pietrasanta e la carne del marmo. La scultura come atto di liberazione della forma.', 'stifanopassarelli' ) ),
@@ -274,12 +288,14 @@ function stifanopassarelli_register_home_fields() {
 
 					stifanopassarelli_acf_tab( 'home_discover', __( 'Discover', 'stifanopassarelli' ) ),
 					stifanopassarelli_acf( 'home_discover_label', __( 'Label', 'stifanopassarelli' ), 'text', __( 'Discover', 'stifanopassarelli' ) ),
-					stifanopassarelli_acf( 'home_discover_eyebrow', __( 'Eyebrow', 'stifanopassarelli' ), 'text', __( '06 — Le opere nel mondo', 'stifanopassarelli' ) ),
-					stifanopassarelli_acf( 'home_discover_luoghi', __( 'Luoghi (uno per riga)', 'stifanopassarelli' ), 'textarea', __( "Positano\nPellare (SA)\nCarrara\nRavenna\nPietrasanta", 'stifanopassarelli' ), array( 'rows' => 6 ) ),
-
+					stifanopassarelli_acf( 'home_discover_eyebrow', __( 'Eyebrow', 'stifanopassarelli' ), 'text', __( '07 — Le opere nel mondo', 'stifanopassarelli' ) ),
+					stifanopassarelli_acf( 'home_discover_luoghi', __( 'Luoghi (uno per riga)', 'stifanopassarelli' ), 'textarea', __( "Positano\nPellare (SA)\nCarrara\nRavenna\nPietrasanta\nPadova\nMoio della Civitella (SA)\nCardile (SA)\nCaselle in Pittari (SA)\nMilano\nSan Mauro Pascoli (FC)", 'stifanopassarelli' ), array( 'rows' => 11 ) ),
+				),
+				stifanopassarelli_accademia_fields(),
+				array(
 					stifanopassarelli_acf_tab( 'home_contatti', __( 'Contatti', 'stifanopassarelli' ) ),
 					stifanopassarelli_acf( 'home_contatti_label', __( 'Label', 'stifanopassarelli' ), 'text', __( 'Risonanze', 'stifanopassarelli' ) ),
-					stifanopassarelli_acf( 'home_contatti_eyebrow', __( 'Eyebrow', 'stifanopassarelli' ), 'text', __( '07 — Contatti & Gallerie', 'stifanopassarelli' ) ),
+					stifanopassarelli_acf( 'home_contatti_eyebrow', __( 'Eyebrow', 'stifanopassarelli' ), 'text', __( '09 — Contatti & Gallerie', 'stifanopassarelli' ) ),
 					stifanopassarelli_acf( 'home_contatti_form', __( 'Shortcode del form (es. Contact Form 7)', 'stifanopassarelli' ), 'text', '', array( 'instructions' => __( 'Vuoto = il form della bozza, che non invia nulla.', 'stifanopassarelli' ) ) ),
 					stifanopassarelli_acf( 'home_contatti_laboratorio_label', __( 'Laboratorio · Label', 'stifanopassarelli' ), 'text', __( 'Il laboratorio', 'stifanopassarelli' ) ),
 					stifanopassarelli_acf( 'home_contatti_laboratorio', __( 'Laboratorio · Luogo', 'stifanopassarelli' ), 'text', __( 'Pellare (SA)', 'stifanopassarelli' ) ),
@@ -291,6 +307,69 @@ function stifanopassarelli_register_home_fields() {
 	);
 }
 add_action( 'acf/init', 'stifanopassarelli_register_home_fields' );
+
+/**
+ * Campi del tab Accademia, con i default di stifanopassarelli_accademia().
+ *
+ * @return array[]
+ */
+function stifanopassarelli_accademia_fields() {
+	$acc = stifanopassarelli_accademia();
+
+	$fields = array(
+		stifanopassarelli_acf_tab( 'home_accademia', __( 'Accademia', 'stifanopassarelli' ) ),
+		stifanopassarelli_acf( 'home_accademia_label', __( 'Label', 'stifanopassarelli' ), 'text', $acc['label'] ),
+		stifanopassarelli_acf( 'home_accademia_eyebrow', __( 'Eyebrow', 'stifanopassarelli' ), 'text', $acc['eyebrow'] ),
+		stifanopassarelli_acf( 'home_accademia_titolo', __( 'Titolo', 'stifanopassarelli' ), 'textarea', $acc['titolo'], array( 'new_lines' => 'br' ) ),
+		stifanopassarelli_acf( 'home_accademia_sottotitolo', __( 'Sottotitolo', 'stifanopassarelli' ), 'textarea', $acc['sottotitolo'] ),
+		stifanopassarelli_acf( 'home_accademia_intro', __( 'Introduzione (un paragrafo per riga)', 'stifanopassarelli' ), 'textarea', $acc['intro'], array( 'rows' => 6 ) ),
+		stifanopassarelli_acf( 'home_accademia_corsi_label', __( 'Corsi · Label', 'stifanopassarelli' ), 'text', $acc['corsi_label'] ),
+	);
+
+	foreach ( $acc['corsi'] as $n => $corso ) {
+		/* translators: %d: numero del corso */
+		$prefix   = sprintf( __( 'Corso %d', 'stifanopassarelli' ), $n ) . ' · ';
+		$fields[] = stifanopassarelli_acf( "home_accademia_corsi_{$n}_titolo", $prefix . __( 'Titolo', 'stifanopassarelli' ), 'text', $corso['titolo'] );
+		$fields[] = stifanopassarelli_acf( "home_accademia_corsi_{$n}_docente", $prefix . __( 'Docente', 'stifanopassarelli' ), 'text', $corso['docente'] );
+		$fields[] = stifanopassarelli_acf( "home_accademia_corsi_{$n}_impara", $prefix . __( 'Cosa imparerai', 'stifanopassarelli' ), 'textarea', $corso['impara'] );
+		$fields[] = stifanopassarelli_acf( "home_accademia_corsi_{$n}_rivolto", $prefix . __( 'A chi è rivolto', 'stifanopassarelli' ), 'textarea', $corso['rivolto'] );
+		$fields[] = stifanopassarelli_acf_media( "home_accademia_corsi_{$n}_immagine", $prefix . __( 'Immagine (4:3)', 'stifanopassarelli' ) );
+	}
+
+	$fields[] = stifanopassarelli_acf( 'home_accademia_destinatari_label', __( 'Destinatari · Label', 'stifanopassarelli' ), 'text', $acc['destinatari_label'] );
+	$fields[] = stifanopassarelli_acf( 'home_accademia_destinatari_testo', __( 'Destinatari · Testo', 'stifanopassarelli' ), 'textarea', $acc['destinatari_testo'] );
+	foreach ( $acc['destinatari'] as $n => $voce ) {
+		/* translators: %d: numero della voce */
+		$prefix   = sprintf( __( 'Destinatari %d', 'stifanopassarelli' ), $n ) . ' · ';
+		$fields[] = stifanopassarelli_acf( "home_accademia_destinatari_{$n}_titolo", $prefix . __( 'Titolo', 'stifanopassarelli' ), 'text', $voce['titolo'] );
+		$fields[] = stifanopassarelli_acf( "home_accademia_destinatari_{$n}_testo", $prefix . __( 'Testo', 'stifanopassarelli' ), 'text', $voce['testo'] );
+	}
+
+	$fields[] = stifanopassarelli_acf( 'home_accademia_sede_label', __( 'Sede · Label', 'stifanopassarelli' ), 'text', $acc['sede_label'] );
+	$fields[] = stifanopassarelli_acf( 'home_accademia_sede_titolo', __( 'Sede · Titolo', 'stifanopassarelli' ), 'text', $acc['sede_titolo'] );
+	$fields[] = stifanopassarelli_acf( 'home_accademia_sede_testo', __( 'Sede · Testo', 'stifanopassarelli' ), 'textarea', $acc['sede_testo'] );
+	foreach ( $acc['sede'] as $n => $voce ) {
+		/* translators: %d: numero del punto */
+		$prefix   = sprintf( __( 'Sede · Punto %d', 'stifanopassarelli' ), $n ) . ' · ';
+		$fields[] = stifanopassarelli_acf( "home_accademia_sede_{$n}_titolo", $prefix . __( 'Titolo', 'stifanopassarelli' ), 'text', $voce['titolo'] );
+		$fields[] = stifanopassarelli_acf( "home_accademia_sede_{$n}_testo", $prefix . __( 'Testo', 'stifanopassarelli' ), 'textarea', $voce['testo'] );
+	}
+	$fields[] = stifanopassarelli_acf( 'home_accademia_sede_mappa', __( 'Sede · Link alla mappa', 'stifanopassarelli' ), 'text', $acc['sede_mappa'] );
+
+	$fields[] = stifanopassarelli_acf( 'home_accademia_form_titolo', __( 'Form · Titolo', 'stifanopassarelli' ), 'text', $acc['form_titolo'] );
+	$fields[] = stifanopassarelli_acf( 'home_accademia_form_testo', __( 'Form · Testo', 'stifanopassarelli' ), 'textarea', $acc['form_testo'] );
+	$fields[] = stifanopassarelli_acf( 'home_accademia_form', __( 'Form · Shortcode (Contact Form 7)', 'stifanopassarelli' ), 'text', '', array( 'instructions' => __( 'Vuoto = nessun form, restano titolo e testo.', 'stifanopassarelli' ) ) );
+
+	$fields[] = stifanopassarelli_acf( 'home_accademia_faq_label', __( 'FAQ · Label', 'stifanopassarelli' ), 'text', $acc['faq_label'] );
+	foreach ( $acc['faq'] as $n => $faq ) {
+		/* translators: %d: numero della domanda */
+		$prefix   = sprintf( __( 'FAQ %d', 'stifanopassarelli' ), $n ) . ' · ';
+		$fields[] = stifanopassarelli_acf( "home_accademia_faq_{$n}_domanda", $prefix . __( 'Domanda', 'stifanopassarelli' ), 'text', $faq['domanda'] );
+		$fields[] = stifanopassarelli_acf( "home_accademia_faq_{$n}_risposta", $prefix . __( 'Risposta', 'stifanopassarelli' ), 'textarea', $faq['risposta'] );
+	}
+
+	return $fields;
+}
 
 /**
  * Field group della pagina "impostazioni-globali": social e footer.

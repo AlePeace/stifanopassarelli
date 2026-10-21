@@ -1,10 +1,11 @@
 <?php
 /**
- * CPT "Opere" + tassonomia "Collezioni" (Ordinarium, Antologia).
+ * CPT "Opere" + tassonomia "Collezioni" (Marmo, Mosaico, Antologia).
  *
- * In homepage le opere riempiono i pannelli di Ordinarium, il carosello
- * dell'Antologia e l'indice. Finché nel CMS non c'è nessuna opera di una
- * collezione si vedono le opere della bozza (stifanopassarelli_opere_bozza()).
+ * In homepage le opere riempiono i pannelli del Marmo, le colonne del Mosaico,
+ * il carosello dell'Antologia e l'indice. Finché nel CMS non c'è nessuna opera
+ * dell'Antologia si vedono le opere della bozza (stifanopassarelli_opere_bozza());
+ * Marmo e Mosaico non hanno fallback: senza opere la sezione non compare.
  *
  * @package stifanopassarelli
  */
@@ -68,11 +69,15 @@ add_action( 'init', 'stifanopassarelli_register_opere' );
  */
 function stifanopassarelli_collezioni() {
 	return array(
-		'ordinarium' => array(
-			'name'   => __( 'Ordinarium', 'stifanopassarelli' ),
-			'anchor' => 'ordinarium',
+		'marmo'     => array(
+			'name'   => __( 'Marmo', 'stifanopassarelli' ),
+			'anchor' => 'marmo',
 		),
-		'antologia'  => array(
+		'mosaico'   => array(
+			'name'   => __( 'Mosaico', 'stifanopassarelli' ),
+			'anchor' => 'mosaico',
+		),
+		'antologia' => array(
 			'name'   => __( 'Antologia', 'stifanopassarelli' ),
 			'anchor' => 'antologia',
 		),
@@ -98,8 +103,10 @@ function stifanopassarelli_register_opera_fields() {
 			),
 			'position' => 'acf_after_title',
 			'fields'   => array(
-				stifanopassarelli_acf( 'opera_sottotitolo', __( 'Sottotitolo (Ordinarium)', 'stifanopassarelli' ), 'text', '', array( 'instructions' => __( 'Es. "La Moka — La liturgia del risveglio."', 'stifanopassarelli' ) ) ),
-				stifanopassarelli_acf( 'opera_descrizione', __( 'Descrizione breve (Ordinarium)', 'stifanopassarelli' ), 'textarea' ),
+				stifanopassarelli_acf( 'opera_sottotitolo', __( 'Sottotitolo (Marmo, Mosaico)', 'stifanopassarelli' ), 'text', '', array( 'instructions' => __( 'Es. "L\'immensità del vuoto scolpita nella pietra."', 'stifanopassarelli' ) ) ),
+				stifanopassarelli_acf( 'opera_descrizione', __( 'Descrizione breve (Marmo)', 'stifanopassarelli' ), 'textarea' ),
+				stifanopassarelli_acf( 'opera_tecnica', __( 'Tecnica e materiali (Marmo, Mosaico)', 'stifanopassarelli' ), 'text', '', array( 'instructions' => __( 'Es. "Marmo statuario di Carrara".', 'stifanopassarelli' ) ) ),
+				stifanopassarelli_acf( 'opera_anno_luogo', __( 'Anno / collocazione (Marmo, Mosaico)', 'stifanopassarelli' ), 'text', '', array( 'instructions' => __( 'Es. "2020 — Collezione privata, Milano".', 'stifanopassarelli' ) ) ),
 				stifanopassarelli_acf( 'opera_nota', __( 'Nota (Antologia)', 'stifanopassarelli' ), 'text', '', array( 'instructions' => __( 'Riga sotto il titolo nel carosello, es. "Agosto 2025 — l\'Atto Zero".', 'stifanopassarelli' ) ) ),
 				array(
 					'key'           => 'field_opera_in_indice',
@@ -109,7 +116,7 @@ function stifanopassarelli_register_opera_fields() {
 					'ui'            => 1,
 					'default_value' => 1,
 				),
-				stifanopassarelli_acf( 'opera_indice_etichetta', __( "Etichetta nell'indice", 'stifanopassarelli' ), 'text', '', array( 'instructions' => __( 'Vuoto = "Collezione · anno di pubblicazione", es. "Ordinarium · 2025".', 'stifanopassarelli' ) ) ),
+				stifanopassarelli_acf( 'opera_indice_etichetta', __( "Etichetta nell'indice", 'stifanopassarelli' ), 'text', '', array( 'instructions' => __( 'Vuoto = "Collezione · anno di pubblicazione", es. "Marmo · 2023".', 'stifanopassarelli' ) ) ),
 			),
 		)
 	);
@@ -123,8 +130,8 @@ add_action( 'acf/init', 'stifanopassarelli_register_opera_fields' );
  * @param string $collezione Slug della collezione.
  *
  * @return array[] Ogni opera ha `title`, `image_id`, `image_src`, `alt`,
- *                 `sottotitolo`, `descrizione`, `nota`, `in_indice`,
- *                 `etichetta`, `anchor`.
+ *                 `sottotitolo`, `descrizione`, `tecnica`, `anno_luogo`,
+ *                 `nota`, `in_indice`, `etichetta`, `anchor`.
  */
 function stifanopassarelli_opere( $collezione ) {
 	$query = new WP_Query(
@@ -166,6 +173,8 @@ function stifanopassarelli_opere( $collezione ) {
 				'alt'         => $image_id ? (string) get_post_meta( $image_id, '_wp_attachment_image_alt', true ) : '',
 				'sottotitolo' => stifanopassarelli_field( 'opera_sottotitolo', '', $post->ID ),
 				'descrizione' => stifanopassarelli_field( 'opera_descrizione', '', $post->ID ),
+				'tecnica'     => stifanopassarelli_field( 'opera_tecnica', '', $post->ID ),
+				'anno_luogo'  => stifanopassarelli_field( 'opera_anno_luogo', '', $post->ID ),
 				'nota'        => stifanopassarelli_field( 'opera_nota', '', $post->ID ),
 				'in_indice'   => null === $in_indice || (bool) $in_indice,
 				'etichetta'   => stifanopassarelli_field( 'opera_indice_etichetta', $name . ' · ' . get_the_date( 'Y', $post ), $post->ID ),
@@ -177,7 +186,7 @@ function stifanopassarelli_opere( $collezione ) {
 }
 
 /**
- * Opere dell'indice: prima Ordinarium, poi Antologia, solo quelle con
+ * Opere dell'indice: Marmo, Mosaico e Antologia, solo quelle con
  * "Mostra nell'indice".
  *
  * @return array[]
@@ -250,6 +259,8 @@ function stifanopassarelli_opere_bozza( $collezione ) {
 				'alt'         => $alt,
 				'sottotitolo' => '',
 				'descrizione' => '',
+				'tecnica'     => '',
+				'anno_luogo'  => '',
 				'nota'        => '',
 				'in_indice'   => false,
 				'etichetta'   => '',
@@ -259,93 +270,54 @@ function stifanopassarelli_opere_bozza( $collezione ) {
 		);
 	};
 
-	if ( 'ordinarium' === $collezione ) {
-		$etichetta = __( 'Ordinarium · 2025', 'stifanopassarelli' );
-
-		return array(
-			$opera(
-				__( 'Aedicula', 'stifanopassarelli' ),
-				'img/works/pos-03.jpg',
-				__( 'Aedicula — La Moka', 'stifanopassarelli' ),
-				array(
-					'sottotitolo' => __( 'La Moka — La liturgia del risveglio.', 'stifanopassarelli' ),
-					'descrizione' => __( 'Il gesto quotidiano si fa nicchia votiva: il risveglio come primo rito del giorno.', 'stifanopassarelli' ),
-					'in_indice'   => true,
-					'etichetta'   => $etichetta,
-				)
-			),
-			$opera(
-				__( 'Sacellum', 'stifanopassarelli' ),
-				'img/works/pos-10.jpg',
-				__( 'Sacellum — Il Limone', 'stifanopassarelli' ),
-				array(
-					'sottotitolo' => __( 'Il Limone — La natura che si fa reliquia.', 'stifanopassarelli' ),
-					'descrizione' => __( "Il frutto effimero cristallizzato nell'oro del mosaico, custodito come una reliquia.", 'stifanopassarelli' ),
-					'in_indice'   => true,
-					'etichetta'   => $etichetta,
-				)
-			),
-			$opera(
-				__( 'Fenesta', 'stifanopassarelli' ),
-				'img/works/pos-08.jpg',
-				__( 'Fenesta — Il Panno', 'stifanopassarelli' ),
-				array(
-					'sottotitolo' => __( "Il Panno — L'effimero diventa monumento.", 'stifanopassarelli' ),
-					'descrizione' => __( 'Il tessuto domestico, sospeso e pietrificato, diventa finestra e monumento.', 'stifanopassarelli' ),
-					'in_indice'   => true,
-					'etichetta'   => $etichetta,
-				)
-			),
-			$opera(
-				__( 'Centriello', 'stifanopassarelli' ),
-				'img/works/pos-16.jpg',
-				__( 'Centriello — Il Centrino', 'stifanopassarelli' ),
-				array(
-					'sottotitolo' => __( 'Il Centrino — La trama della memoria.', 'stifanopassarelli' ),
-					'descrizione' => __( 'La trama tessuta dalle mani di casa, tradotta in tessere: la memoria che diventa pietra.', 'stifanopassarelli' ),
-					'in_indice'   => true,
-					'etichetta'   => $etichetta,
-				)
-			),
-		);
+	if ( 'antologia' !== $collezione ) {
+		return array();
 	}
 
-	if ( 'antologia' === $collezione ) {
-		return array(
-			$opera(
-				__( 'Bacco', 'stifanopassarelli' ),
-				'img/antologia/bacco.jpg',
-				__( 'Bacco', 'stifanopassarelli' ),
-				array(
-					'nota'      => __( "Agosto 2025 — l'Atto Zero", 'stifanopassarelli' ),
-					'in_indice' => true,
-					'etichetta' => __( 'Antologia · 2025', 'stifanopassarelli' ),
-				)
-			),
-			$opera(
-				__( 'San Bartolomeo', 'stifanopassarelli' ),
-				'img/antologia/san_bartolomeo.jpg',
-				__( 'San Bartolomeo', 'stifanopassarelli' ),
-				array(
-					'nota'      => __( 'Pellare — la lotta con il marmo', 'stifanopassarelli' ),
-					'in_indice' => true,
-					'etichetta' => __( 'Antologia · Pellare', 'stifanopassarelli' ),
-				)
-			),
-			$opera(
-				__( 'Oltre il Minerale', 'stifanopassarelli' ),
-				'img/antologia/oltre_minerale.jpg',
-				__( 'Oltre il minerale', 'stifanopassarelli' ),
-				array( 'nota' => __( 'Frammento monumentale', 'stifanopassarelli' ) )
-			),
-			$opera(
-				__( 'Il Rito della Forma', 'stifanopassarelli' ),
-				'img/antologia/il_rito_della_forma.jpg',
-				__( 'Il rito della forma', 'stifanopassarelli' ),
-				array( 'nota' => __( 'Studio · processo', 'stifanopassarelli' ) )
-			),
-		);
-	}
-
-	return array();
+	// In coda Aedicula, dall'Ordinarium della bozza (Sacellum, Fenesta e
+	// Centriello tolti su richiesta del cliente).
+	return array(
+		$opera(
+			__( 'Bacco', 'stifanopassarelli' ),
+			'img/antologia/bacco.jpg',
+			__( 'Bacco', 'stifanopassarelli' ),
+			array(
+				'nota'      => __( "Agosto 2025 — l'Atto Zero", 'stifanopassarelli' ),
+				'in_indice' => true,
+				'etichetta' => __( 'Antologia · 2025', 'stifanopassarelli' ),
+			)
+		),
+		$opera(
+			__( 'San Bartolomeo', 'stifanopassarelli' ),
+			'img/antologia/san_bartolomeo.jpg',
+			__( 'San Bartolomeo', 'stifanopassarelli' ),
+			array(
+				'nota'      => __( 'Pellare — la lotta con il marmo', 'stifanopassarelli' ),
+				'in_indice' => true,
+				'etichetta' => __( 'Antologia · Pellare', 'stifanopassarelli' ),
+			)
+		),
+		$opera(
+			__( 'Oltre il Minerale', 'stifanopassarelli' ),
+			'img/antologia/oltre_minerale.jpg',
+			__( 'Oltre il minerale', 'stifanopassarelli' ),
+			array( 'nota' => __( 'Frammento monumentale', 'stifanopassarelli' ) )
+		),
+		$opera(
+			__( 'Il Rito della Forma', 'stifanopassarelli' ),
+			'img/antologia/il_rito_della_forma.jpg',
+			__( 'Il rito della forma', 'stifanopassarelli' ),
+			array( 'nota' => __( 'Studio · processo', 'stifanopassarelli' ) )
+		),
+		$opera(
+			__( 'Aedicula', 'stifanopassarelli' ),
+			'img/works/pos-03.jpg',
+			__( 'Aedicula — La Moka', 'stifanopassarelli' ),
+			array(
+				'nota'      => __( 'La Moka — La liturgia del risveglio.', 'stifanopassarelli' ),
+				'in_indice' => true,
+				'etichetta' => __( 'Ordinarium · 2025', 'stifanopassarelli' ),
+			)
+		),
+	);
 }

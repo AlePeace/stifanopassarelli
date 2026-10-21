@@ -15,7 +15,7 @@ if ( ! defined( 'STIFANOPASSARELLI_VERSION' ) ) {
 	 * to create your production build, the value below will be replaced in the
 	 * generated zip file with a timestamp, converted to base 36.
 	 */
-	define( 'STIFANOPASSARELLI_VERSION', '0.1.0' );
+	define( 'STIFANOPASSARELLI_VERSION', '0.1.2' );
 }
 
 if ( ! defined( 'STIFANOPASSARELLI_TYPOGRAPHY_CLASSES' ) ) {
@@ -277,15 +277,27 @@ require get_template_directory() . '/inc/acf-helpers.php';
 require get_template_directory() . '/inc/acf-fields.php';
 
 /**
- * CPT "Opere" + tassonomia "Collezioni" (Ordinarium, Antologia) e lettura
+ * CPT "Opere" + tassonomia "Collezioni" (Marmo, Mosaico, Antologia) e lettura
  * delle opere per la homepage, con la copy della bozza come fallback.
  */
 require get_template_directory() . '/inc/opere.php';
 
 /**
+ * Accademia: copy di default della sezione e ritocchi a Contact Form 7.
+ */
+require get_template_directory() . '/inc/accademia.php';
+
+/**
  * Pagine "Home" e "Impostazioni globali" create all'attivazione del tema.
  */
 require get_template_directory() . '/inc/setup.php';
+
+/**
+ * Opere > Importa contenuti: opere e modulo dell'Accademia su un sito nuovo.
+ */
+if ( is_admin() ) {
+	require get_template_directory() . '/inc/importer.php';
+}
 
 /**
  * Custom template tags for this theme.
