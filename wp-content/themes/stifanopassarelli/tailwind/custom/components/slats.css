@@ -1,0 +1,12 @@
+/**
+ * Slat reveal: immagine svelata a listoni (ref eleos) — la firma visiva.
+ *
+ * Copiato 1:1 dalla bozza (assets/css/style.css).
+ */
+
+/* ---------------------------------------- SLAT REVEAL (listoni, ref eleos) */
+.sp-slats { position: relative; overflow: hidden; }
+.sp-slats__img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.sp-slats__overlay { position: absolute; inset: 0; display: flex; pointer-events: none; }
+.sp-slats__slat { flex: 1 1 0; background: var(--sp-bone); will-change: transform; }
+.sp-dark .sp-slats__slat { background: var(--sp-ink); }

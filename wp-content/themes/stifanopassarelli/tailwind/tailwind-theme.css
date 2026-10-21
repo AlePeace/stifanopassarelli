@@ -1,0 +1,21 @@
+/**
+ * Design tokens Stifano Passarelli — SOLO colori e font-family.
+ *
+ * Valori identici alle custom properties `--sp-*` della bozza
+ * (draft_stifano_passarelli/assets/css/style.css), estratte dalla brand
+ * identity: inchiostro su gesso, accento oro-mosaico. In `custom/base.css` le
+ * `--sp-*` puntano a questi token, così il CSS della bozza resta 1:1.
+ */
+@theme {
+	--font-serif: "Playfair Display", "Times New Roman", serif;
+	--font-mono: "Space Mono", ui-monospace, "SFMono-Regular", monospace;
+	--font-sans: "Inter", system-ui, -apple-system, sans-serif;
+
+	--color-bone: #ede9e1;
+	--color-bone-2: #e3ded4;
+	--color-ink: #14110e;
+	--color-ink-2: #2a251f;
+	--color-gold: #a9884f;
+	--color-gold-2: #c7a56b;
+	--color-marble: #c7c1b6;
+}

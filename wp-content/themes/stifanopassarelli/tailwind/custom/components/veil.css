@@ -1,0 +1,26 @@
+/**
+ * Work in progress: binari infiniti + logo fisso al centro (ref septiembre).
+ *
+ * Copiato 1:1 dalla bozza (assets/css/style.css).
+ */
+
+/* ------------------------------------- SEPTIEMBRE: pinned parallax + logo
+   I binari sono loop infiniti (le foto vengono clonate da JS e la posizione
+   viene "wrappata"): scorrono dentro lo sticky in overflow hidden senza mai
+   svuotarsi. A fine timeline i binari restano come texture di fondo e le foto
+   del collage entrano alternate sinistra/destra, sfalsate tra loro. */
+.sp-veil { position: relative; height: 420vh; background: var(--sp-bone-2); }
+.sp-veil__sticky { position: sticky; top: 0; height: 100svh; overflow: hidden; display: grid; place-items: center; }
+.sp-veil__logo { position: relative; z-index: 5; width: clamp(120px, 20vw, 240px); color: var(--sp-ink); mix-blend-mode: multiply; }
+.sp-veil__logo svg { width: 100%; height: auto; }
+.sp-veil__track { position: absolute; inset: 0; z-index: 1; will-change: opacity, transform; }
+.sp-veil__col { position: absolute; top: 0; height: auto; display: flex; flex-direction: column; gap: 4vh; will-change: transform; }
+.sp-veil__col img { display: block; width: 14vw; min-width: 130px; aspect-ratio: 3/4; object-fit: cover; filter: grayscale(1); }
+.sp-veil__caption { position: absolute; bottom: var(--sp-gutter); left: var(--sp-gutter); font-family: var(--sp-mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; z-index: 6; }
+
+/* mobile: 2 soli binari (gli esterni), foto più grandi */
+@media (max-width: 760px) {
+  .sp-veil { height: 340vh; }
+  .sp-veil__col:nth-child(2), .sp-veil__col:nth-child(3) { display: none; }
+  .sp-veil__col img { width: 40vw; min-width: 0; }
+}

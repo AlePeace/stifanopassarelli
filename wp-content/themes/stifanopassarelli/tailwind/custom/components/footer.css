@@ -1,0 +1,11 @@
+/**
+ * Footer.
+ *
+ * Copiato 1:1 dalla bozza (assets/css/style.css).
+ */
+
+/* --------------------------------------------------------------- FOOTER */
+.sp-footer { background: var(--sp-ink); color: var(--sp-bone); padding: clamp(4rem,10vh,8rem) var(--sp-gutter) 2rem; position: relative; overflow: hidden; }
+.sp-footer__big { font-family: var(--sp-serif); font-size: clamp(1.2rem, 7.6vw, 8.5rem); line-height: 1; text-align: center; letter-spacing: 0; text-transform: uppercase; white-space: nowrap; }
+.sp-footer__big em { font-style: italic; }
+.sp-footer__meta { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-top: 4rem; font-family: var(--sp-mono); font-size: 0.68rem; letter-spacing: 0.1em; opacity: 0.7; }

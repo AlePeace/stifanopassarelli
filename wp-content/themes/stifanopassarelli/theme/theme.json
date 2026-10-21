@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"settings": {
+		"color": {
+			"palette": [
+				{ "slug": "bone", "color": "#ede9e1", "name": "Bone (gesso)" },
+				{ "slug": "bone-2", "color": "#e3ded4", "name": "Bone 2" },
+				{ "slug": "ink", "color": "#14110e", "name": "Ink (marmo bruciato)" },
+				{ "slug": "ink-2", "color": "#2a251f", "name": "Ink 2" },
+				{ "slug": "gold", "color": "#a9884f", "name": "Gold (oro mosaico)" },
+				{ "slug": "gold-2", "color": "#c7a56b", "name": "Gold 2" },
+				{ "slug": "marble", "color": "#c7c1b6", "name": "Marble" }
+			]
+		},
+		"layout": {
+			"contentSize": "40rem",
+			"wideSize": "60rem"
+		}
+	}
+}

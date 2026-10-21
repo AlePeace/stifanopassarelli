@@ -1,0 +1,36 @@
+/**
+ * Stili _tw per i template generici di WordPress (page.php, single.php,
+ * index.php). max-w-160 = 40rem, max-w-240 = 60rem (ex content/wide size).
+ */
+.page-title,
+.entry-title {
+	@apply mx-auto mb-6 max-w-160 text-3xl font-extrabold;
+}
+
+.entry-meta,
+.entry-footer,
+.post-navigation,
+#comments {
+	@apply mx-auto mb-6 max-w-160;
+}
+
+.page-content > *,
+.entry-content > * {
+	@apply mx-auto max-w-160;
+}
+
+.entry-content > .alignwide {
+	@apply max-w-240;
+}
+
+.entry-content > .alignfull {
+	@apply max-w-none;
+}
+
+.entry-content > .alignleft {
+	@apply float-left mr-8;
+}
+
+.entry-content > .alignright {
+	@apply float-right ml-8;
+}

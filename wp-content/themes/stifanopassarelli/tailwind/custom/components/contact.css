@@ -1,0 +1,21 @@
+/**
+ * Contatti — Risonanze.
+ *
+ * Copiato 1:1 dalla bozza (assets/css/style.css).
+ */
+
+/* --------------------------------------------------------------- CONTATTI */
+.sp-contact { display: grid; grid-template-columns: 1.1fr 1fr; gap: 4rem; }
+.sp-form { display: flex; flex-direction: column; gap: 1.4rem; }
+.sp-field { position: relative; }
+.sp-field input, .sp-field textarea {
+  width: 100%; background: transparent; border: 0; border-bottom: 1px solid var(--sp-line);
+  padding: 0.9rem 0; font-family: var(--sp-sans); font-size: 1rem; color: inherit;
+}
+.sp-field input:focus, .sp-field textarea:focus { outline: none; border-color: var(--sp-ink); }
+.sp-field label { font-family: var(--sp-mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.6; }
+.sp-btn {
+  align-self: flex-start; font-family: var(--sp-mono); font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
+  background: var(--sp-ink); color: var(--sp-bone); border: 0; padding: 1rem 2rem; margin-top: 1rem;
+}
+@media (max-width: 760px) { .sp-contact { grid-template-columns: 1fr; } }

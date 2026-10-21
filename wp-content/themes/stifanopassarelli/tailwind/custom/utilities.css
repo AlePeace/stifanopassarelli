@@ -1,0 +1,15 @@
+/**
+ * Custom styles to immediately follow Tailwind’s `utilities` layer
+ *
+ * Add your own utility classes to this theme. Complex utility classes should
+ * be added using Tailwind’s plugin system:
+ *
+ * https://tailwindcss.com/docs/adding-custom-styles#adding-custom-utilities
+ */
+
+/* utility della bozza: mostra/nascondi in base al tipo di puntatore */
+.sp-only-touch { display: none; }
+@media (hover: none), (pointer: coarse) {
+  .sp-only-desktop { display: none; }
+  .sp-only-touch { display: inline; }
+}

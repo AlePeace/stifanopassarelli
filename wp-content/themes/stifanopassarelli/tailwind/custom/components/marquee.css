@@ -1,0 +1,11 @@
+/**
+ * Discover: marquee.
+ *
+ * Copiato 1:1 dalla bozza (assets/css/style.css).
+ */
+
+/* --------------------------------------------------------------- DISCOVER */
+.sp-marquee { overflow: hidden; white-space: nowrap; border-top: 1px solid var(--sp-line); border-bottom: 1px solid var(--sp-line); padding: 1.4rem 0; }
+.sp-marquee__track { display: inline-flex; gap: 3rem; will-change: transform; }
+.sp-marquee__track span { font-family: var(--sp-serif); font-size: clamp(1.6rem, 4vw, 3rem); font-style: italic; }
+.sp-marquee__track span::after { content: "—"; margin-left: 3rem; opacity: 0.4; font-style: normal; }

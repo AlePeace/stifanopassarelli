@@ -1,0 +1,91 @@
+/**
+ * Custom styles to immediately follow Tailwind’s `base` layer
+ *
+ * Base della bozza (style.css, sezione "base"): custom properties `--sp-*`,
+ * body, titoli, selezione e cursore nativo nascosto su desktop.
+ */
+
+:root {
+	/* Colori brand → token di tailwind-theme.css */
+	--sp-bone: var(--color-bone); /* fondo gesso / travertino */
+	--sp-bone-2: var(--color-bone-2); /* fondo alternativo */
+	--sp-ink: var(--color-ink); /* nero caldo (marmo bruciato) */
+	--sp-ink-2: var(--color-ink-2);
+	--sp-gold: var(--color-gold); /* oro mosaico */
+	--sp-gold-2: var(--color-gold-2); /* oro chiaro */
+	--sp-marble: var(--color-marble); /* grigio marmo */
+	--sp-line: rgba(20, 17, 14, 0.06); /* hairline pattern — tenue, da sfondo */
+
+	--sp-serif: var(--font-serif);
+	--sp-mono: var(--font-mono);
+	--sp-sans: var(--font-sans);
+
+	--sp-ease: cubic-bezier(0.65, 0.05, 0.1, 1);
+	--sp-gutter: clamp(1.25rem, 4vw, 4rem);
+}
+
+html {
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+body {
+	margin: 0;
+	background: var(--sp-bone);
+	color: var(--sp-ink);
+	font-family: var(--sp-sans);
+	font-size: 16px;
+	line-height: 1.5;
+	overflow-x: hidden;
+}
+
+/* nasconde cursore nativo su desktop (usiamo quello custom) */
+@media (hover: hover) and (pointer: fine) {
+	body {
+		cursor: none;
+	}
+	a,
+	button,
+	[data-cursor] {
+		cursor: none;
+	}
+}
+
+/* touch/mobile: nessun cursore custom, si torna al comportamento nativo */
+@media (hover: none), (pointer: coarse) {
+	.sp-cursor {
+		display: none !important;
+	}
+	body,
+	a,
+	button,
+	[data-cursor] {
+		cursor: auto;
+	}
+}
+
+::selection {
+	background: var(--sp-ink);
+	color: var(--sp-bone);
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-family: var(--sp-serif);
+	font-weight: 500;
+	margin: 0;
+	line-height: 0.98;
+}
+
+img {
+	max-width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	* {
+		animation-duration: 0.001ms !important;
+		transition-duration: 0.001ms !important;
+	}
+}

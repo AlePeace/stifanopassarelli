@@ -1,0 +1,11 @@
+/**
+ * Il Manifesto (testo viscerale).
+ *
+ * Copiato 1:1 dalla bozza (assets/css/style.css).
+ */
+
+/* --------------------------------------------- MANIFESTO (testo viscerale) */
+.sp-manifesto__text { font-family: var(--sp-serif); font-size: clamp(1.6rem, 3.4vw, 3rem); line-height: 1.15; max-width: 22ch; }
+.sp-word { display: inline-block; }
+.sp-reveal-word { display: inline-block; overflow: hidden; }
+.sp-reveal-word > span { display: inline-block; will-change: transform; }

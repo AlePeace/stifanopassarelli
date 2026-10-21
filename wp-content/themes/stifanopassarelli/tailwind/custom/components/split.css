@@ -1,0 +1,27 @@
+/**
+ * Il Rito — La Doppia Pelle (split screen).
+ *
+ * Copiato 1:1 dalla bozza (assets/css/style.css).
+ */
+
+/* --------------------------------------------- DOPPIA PELLE (split screen) */
+.sp-split { display: grid; grid-template-columns: 1fr 1fr; min-height: 100svh; }
+.sp-split__panel { position: relative; overflow: hidden; padding: var(--sp-gutter); display: flex; align-items: flex-end; min-height: 60vh; }
+.sp-split__panel--left { background: var(--sp-ink); color: var(--sp-bone); }
+.sp-split__panel--right { background: var(--sp-bone); color: var(--sp-ink); }
+/* la foto di Carla resta senza alcun overlay → il testo passa al chiaro con
+   un'ombra morbida: leggibilità senza toccare l'immagine */
+.sp-split__panel--right .sp-split__content { color: var(--sp-bone); text-shadow: 0 2px 28px rgba(10,9,8,0.7); }
+.sp-split__bg { position: absolute; inset: 0; z-index: 0; }
+/* foto a piena opacità, senza veli */
+.sp-split__bg img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); }
+/* solo il pannello scuro tiene uno scrim sul fondo: il testo è chiaro e senza
+   non sarebbe leggibile. "La Dedizione" (destra) resta completamente pulita. */
+.sp-split__panel--left .sp-split__bg::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(0deg, rgba(10,9,8,0.92) 0%, rgba(10,9,8,0.55) 38%, rgba(10,9,8,0.12) 72%, rgba(10,9,8,0) 100%);
+}
+.sp-split__content { position: relative; z-index: 2; }
+.sp-split__num { font-family: var(--sp-mono); font-size: 0.72rem; letter-spacing: 0.16em; }
+.sp-split__title { font-size: clamp(1.8rem, 4vw, 3.4rem); margin: 0.4rem 0 0.8rem; }
+@media (max-width: 760px) { .sp-split { grid-template-columns: 1fr; } }

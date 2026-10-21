@@ -1,0 +1,16 @@
+/**
+ * Gli Artisti.
+ *
+ * Copiato 1:1 dalla bozza (assets/css/style.css).
+ */
+
+/* --------------------------------------------------------------- ARTISTI */
+.sp-artists { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.sp-artist { position: relative; overflow: hidden; padding: var(--sp-gutter); min-height: 78vh; display: flex; align-items: flex-end; }
+.sp-artist__bg { position: absolute; inset: 0; z-index: 0; }
+.sp-artist__bg img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); }
+.sp-artist__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10,9,8,0.75), rgba(10,9,8,0.1)); }
+.sp-artist__content { position: relative; z-index: 2; color: var(--sp-bone); max-width: 40ch; }
+.sp-artist__name { font-size: clamp(2rem, 4vw, 3.6rem); }
+.sp-artist__role { font-family: var(--sp-mono); font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.8; margin-bottom: 1rem; }
+@media (max-width: 760px) { .sp-artists { grid-template-columns: 1fr; } }

@@ -1,0 +1,23 @@
+/**
+ * Antologia: frecce Swiper fuori dal contenitore.
+ *
+ * Copiato 1:1 dalla bozza (assets/css/style.css).
+ */
+
+/* -------------------------------------------------- SWIPER (navigazione) */
+.sp-swiper { position: relative; }
+.sp-swiper-nav {
+  display: flex; justify-content: flex-end; gap: 0.75rem;
+  padding: 1.8rem var(--sp-gutter) 0;
+}
+.sp-swiper-btn {
+  width: 4.2rem; height: 2.6rem; display: grid; place-items: center;
+  background: transparent; color: inherit; border: 1px solid var(--sp-line);
+  transition: background 0.4s var(--sp-ease), color 0.4s var(--sp-ease),
+              border-color 0.4s var(--sp-ease), opacity 0.35s var(--sp-ease);
+}
+.sp-swiper-btn svg { width: 2rem; height: auto; }
+.sp-swiper-btn:hover { background: var(--sp-ink); color: var(--sp-bone); border-color: var(--sp-ink); }
+/* freccia non utilizzabile → sparisce ma tiene il posto (niente salti di layout) */
+.sp-swiper-btn.swiper-button-disabled,
+.sp-swiper-btn.swiper-button-lock { opacity: 0; visibility: hidden; pointer-events: none; }

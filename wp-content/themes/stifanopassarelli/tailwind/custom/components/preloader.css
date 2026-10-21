@@ -1,0 +1,24 @@
+/**
+ * Preloader identità: la O (Emanuele) e la e (Carla) compongono il monogramma.
+ *
+ * Copiato 1:1 dalla bozza (assets/css/style.css).
+ */
+
+/* ------------------------------------------------------------- PRELOADER */
+.sp-preloader {
+  position: fixed; inset: 0; z-index: 10000;
+  background: var(--sp-bone);
+  display: grid; place-items: center;
+}
+.sp-preloader__stage { position: relative; width: min(60vw, 360px); display: grid; place-items: center; }
+.sp-preloader .mono-merge { position: relative; width: clamp(88px, 20vw, 150px); aspect-ratio: 214 / 252; color: var(--sp-ink); }
+.sp-preloader .m-part { position: absolute; inset: 0; width: 100%; height: 100%; }
+.sp-preloader__word {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+  width: 92vw; max-width: 900px; opacity: 0;
+}
+.sp-preloader__word img { width: 100%; height: auto; display: block; }
+.sp-preloader__count {
+  position: absolute; bottom: var(--sp-gutter); right: var(--sp-gutter);
+  font-family: var(--sp-mono); font-size: 0.8rem; letter-spacing: 0.1em;
+}
