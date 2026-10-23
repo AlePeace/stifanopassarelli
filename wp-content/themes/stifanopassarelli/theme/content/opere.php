@@ -93,9 +93,10 @@ return array(
 		'anno'       => 2023,
 		'image'      => 'img/opere/libreria.jpg',
 		'fields'     => array(
-			'opera_sottotitolo' => 'La trama della conoscenza fatta materia.',
-			'opera_tecnica'     => 'Mosaico in materiali lapidei e smalti (realizzato per Jepis Bottega)',
-			'opera_anno_luogo'  => '2023 — Caselle in Pittari (SA)',
+			'opera_sottotitolo'  => 'La trama della conoscenza fatta materia.',
+			'opera_tecnica'      => 'Mosaico in materiali lapidei e smalti (realizzato per Jepis Bottega)',
+			'opera_anno_luogo'   => '2023 — Caselle in Pittari (SA)',
+			'opera_inquadratura' => 'left',
 		),
 	),
 	array(

@@ -22,6 +22,9 @@
 .sp-panel__body { max-width: 34ch; opacity: 0; transform: translateY(12px); transition: opacity 0.5s 0.15s var(--sp-ease), transform 0.5s 0.15s var(--sp-ease); }
 .sp-panel.is-open .sp-panel__body { opacity: 1; transform: none; }
 .sp-panel__sub { font-family: var(--sp-serif); font-style: italic; font-size: 1.1rem; margin: 0.4rem 0; }
+/* fuori dalla bozza: il numero compare solo a pannello aperto, insieme al corpo */
+.sp-panel__idx { opacity: 0; transition: opacity 0.5s 0.15s var(--sp-ease); }
+.sp-panel.is-open .sp-panel__idx { opacity: 0.8; }
 /* mobile: vero accordion — chiuso mostra SOLO il titolo, aperto rivela foto + testo */
 @media (max-width: 760px) {
   .sp-panels { flex-direction: column; height: auto; min-height: 0; gap: 2px; }

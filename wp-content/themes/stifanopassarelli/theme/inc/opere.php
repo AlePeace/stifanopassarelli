@@ -107,6 +107,22 @@ function stifanopassarelli_register_opera_fields() {
 				stifanopassarelli_acf( 'opera_descrizione', __( 'Descrizione breve (Marmo)', 'stifanopassarelli' ), 'textarea' ),
 				stifanopassarelli_acf( 'opera_tecnica', __( 'Tecnica e materiali (Marmo, Mosaico)', 'stifanopassarelli' ), 'text', '', array( 'instructions' => __( 'Es. "Marmo statuario di Carrara".', 'stifanopassarelli' ) ) ),
 				stifanopassarelli_acf( 'opera_anno_luogo', __( 'Anno / collocazione (Marmo, Mosaico)', 'stifanopassarelli' ), 'text', '', array( 'instructions' => __( 'Es. "2020 — Collezione privata, Milano".', 'stifanopassarelli' ) ) ),
+				stifanopassarelli_acf(
+					'opera_inquadratura',
+					__( 'Inquadratura della foto', 'stifanopassarelli' ),
+					'select',
+					'center',
+					array(
+						'instructions' => __( 'Quale parte della foto resta visibile quando viene ritagliata (es. foto orizzontale in un riquadro verticale).', 'stifanopassarelli' ),
+						'choices'      => array(
+							'center' => __( 'Centro', 'stifanopassarelli' ),
+							'left'   => __( 'Sinistra', 'stifanopassarelli' ),
+							'right'  => __( 'Destra', 'stifanopassarelli' ),
+							'top'    => __( 'Alto', 'stifanopassarelli' ),
+							'bottom' => __( 'Basso', 'stifanopassarelli' ),
+						),
+					)
+				),
 				stifanopassarelli_acf( 'opera_nota', __( 'Nota (Antologia)', 'stifanopassarelli' ), 'text', '', array( 'instructions' => __( 'Riga sotto il titolo nel carosello, es. "Agosto 2025 — l\'Atto Zero".', 'stifanopassarelli' ) ) ),
 				array(
 					'key'           => 'field_opera_in_indice',
@@ -167,18 +183,19 @@ function stifanopassarelli_opere( $collezione ) {
 			$in_indice = function_exists( 'get_field' ) ? get_field( 'opera_in_indice', $post->ID ) : true;
 
 			return array(
-				'title'       => get_the_title( $post ),
-				'image_id'    => $image_id,
-				'image_src'   => '',
-				'alt'         => $image_id ? (string) get_post_meta( $image_id, '_wp_attachment_image_alt', true ) : '',
-				'sottotitolo' => stifanopassarelli_field( 'opera_sottotitolo', '', $post->ID ),
-				'descrizione' => stifanopassarelli_field( 'opera_descrizione', '', $post->ID ),
-				'tecnica'     => stifanopassarelli_field( 'opera_tecnica', '', $post->ID ),
-				'anno_luogo'  => stifanopassarelli_field( 'opera_anno_luogo', '', $post->ID ),
-				'nota'        => stifanopassarelli_field( 'opera_nota', '', $post->ID ),
-				'in_indice'   => null === $in_indice || (bool) $in_indice,
-				'etichetta'   => stifanopassarelli_field( 'opera_indice_etichetta', $name . ' · ' . get_the_date( 'Y', $post ), $post->ID ),
-				'anchor'      => $anchor,
+				'title'        => get_the_title( $post ),
+				'image_id'     => $image_id,
+				'image_src'    => '',
+				'alt'          => $image_id ? (string) get_post_meta( $image_id, '_wp_attachment_image_alt', true ) : '',
+				'sottotitolo'  => stifanopassarelli_field( 'opera_sottotitolo', '', $post->ID ),
+				'descrizione'  => stifanopassarelli_field( 'opera_descrizione', '', $post->ID ),
+				'tecnica'      => stifanopassarelli_field( 'opera_tecnica', '', $post->ID ),
+				'anno_luogo'   => stifanopassarelli_field( 'opera_anno_luogo', '', $post->ID ),
+				'nota'         => stifanopassarelli_field( 'opera_nota', '', $post->ID ),
+				'inquadratura' => stifanopassarelli_field( 'opera_inquadratura', 'center', $post->ID ),
+				'in_indice'    => null === $in_indice || (bool) $in_indice,
+				'etichetta'    => stifanopassarelli_field( 'opera_indice_etichetta', $name . ' · ' . get_the_date( 'Y', $post ), $post->ID ),
+				'anchor'       => $anchor,
 			);
 		},
 		$query->posts
@@ -216,17 +233,22 @@ function stifanopassarelli_opere_indice() {
  * @param string $alt   Alt (default: quello dell'opera).
  */
 function stifanopassarelli_opera_img( $opera, $class = '', $alt = null ) {
-	$alt = null === $alt ? $opera['alt'] : $alt;
+	$alt   = null === $alt ? $opera['alt'] : $alt;
+	$style = ! empty( $opera['inquadratura'] ) && 'center' !== $opera['inquadratura'] ? 'object-position: ' . $opera['inquadratura'] : '';
 
 	if ( $opera['image_id'] ) {
+		$attrs = array(
+			'class' => $class,
+			'alt'   => $alt,
+		);
+		if ( $style ) {
+			$attrs['style'] = $style;
+		}
 		echo wp_get_attachment_image( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			$opera['image_id'],
 			'full',
 			false,
-			array(
-				'class' => $class,
-				'alt'   => $alt,
-			)
+			$attrs
 		);
 		return;
 	}
@@ -253,18 +275,19 @@ function stifanopassarelli_opere_bozza( $collezione ) {
 	$opera = function ( $title, $image_src, $alt, $extra ) use ( $collezione ) {
 		return array_merge(
 			array(
-				'title'       => $title,
-				'image_id'    => 0,
-				'image_src'   => $image_src,
-				'alt'         => $alt,
-				'sottotitolo' => '',
-				'descrizione' => '',
-				'tecnica'     => '',
-				'anno_luogo'  => '',
-				'nota'        => '',
-				'in_indice'   => false,
-				'etichetta'   => '',
-				'anchor'      => $collezione,
+				'title'        => $title,
+				'image_id'     => 0,
+				'image_src'    => $image_src,
+				'alt'          => $alt,
+				'sottotitolo'  => '',
+				'descrizione'  => '',
+				'tecnica'      => '',
+				'anno_luogo'   => '',
+				'nota'         => '',
+				'inquadratura' => '',
+				'in_indice'    => false,
+				'etichetta'    => '',
+				'anchor'       => $collezione,
 			),
 			$extra
 		);
