@@ -37,6 +37,7 @@ function stifanopassarelli_accademia() {
 				'src'     => 'img/artists/carla.jpg',
 			),
 		),
+		'marquee'           => __( "Nessun requisito di accesso\nDidattica personalizzata\nMateriali e cotture inclusi\nCorsi settimanali\nWorkshop nel weekend\nA pochi passi dalla stazione di Ascea", 'stifanopassarelli' ),
 		'destinatari_label' => __( 'A chi si rivolgono i corsi', 'stifanopassarelli' ),
 		'destinatari_testo' => __( 'Non servono requisiti di accesso o competenze artistiche di partenza. La didattica è personalizzata e segue i ritmi di ogni singolo allievo.', 'stifanopassarelli' ),
 		'destinatari'       => array(

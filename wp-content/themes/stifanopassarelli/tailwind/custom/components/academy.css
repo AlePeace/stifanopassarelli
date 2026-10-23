@@ -1,36 +1,50 @@
 /**
  * Accademia (scuola d'arte): fondo chiaro per staccarla dal resto del sito,
- * corsi, destinatari, sede + form (Contact Form 7) e FAQ.
+ * corsi (pannelli del Marmo), marquee dei punti chiave, destinatari a righe,
+ * sede + form (Contact Form 7) e FAQ.
  */
 
 .sp-academy { background: var(--sp-paper); border-top: 1px solid rgba(20, 17, 14, 0.08); }
-.sp-academy .sp-slats__slat { background: var(--sp-paper); }
 .sp-academy__block-label { display: flex; margin-bottom: 2rem; }
 
-.sp-academy__intro { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(2rem, 5vw, 6rem); align-items: end; margin-bottom: clamp(4rem, 9vw, 8rem); }
-.sp-academy__sub { font-family: var(--sp-serif); font-style: italic; font-size: clamp(1.15rem, 1.8vw, 1.5rem); line-height: 1.35; margin-top: 1.4rem; max-width: 34ch; }
-.sp-academy__text { display: flex; flex-direction: column; gap: 1rem; max-width: 52ch; font-size: 0.98rem; line-height: 1.65; opacity: 0.85; }
+.sp-academy__intro { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(2rem, 5vw, 6rem); align-items: end; margin-bottom: clamp(4rem, 9vw, 8rem); }
+.sp-academy__sub { font-family: var(--sp-serif); font-style: italic; font-size: clamp(1.4rem, 2.6vw, 2.2rem); line-height: 1.2; max-width: 26ch; }
+.sp-academy__text { display: flex; flex-direction: column; gap: 0.8rem; max-width: 52ch; margin-top: 1.8rem; font-size: 0.9rem; line-height: 1.65; opacity: 0.75; }
 
-.sp-academy__courses { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 4vw, 4rem); margin-bottom: clamp(4rem, 9vw, 8rem); }
-.sp-academy__num { display: block; font-family: var(--sp-mono); font-size: 0.7rem; letter-spacing: 0.14em; margin-top: 1.4rem; opacity: 0.6; }
-.sp-academy__course-title { font-size: clamp(1.8rem, 3vw, 2.6rem); margin-top: 0.5rem; }
-.sp-academy__teacher { font-family: var(--sp-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.8rem; color: var(--sp-gold); }
-.sp-academy__dl { margin-top: 1.4rem; border-top: 1px solid rgba(20, 17, 14, 0.12); }
-.sp-academy__dl dt { font-family: var(--sp-mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.6; padding-top: 1rem; }
-.sp-academy__dl dd { margin: 0.4rem 0 0; padding-bottom: 1rem; border-bottom: 1px solid rgba(20, 17, 14, 0.12); font-size: 0.95rem; line-height: 1.6; }
+/* corsi: pannelli espandibili del Marmo (panels.css), solo due → apertura meno sbilanciata */
+.sp-academy__courses { margin-bottom: clamp(3rem, 7vw, 6rem); }
+.sp-academy__courses .sp-panel.is-open { flex-grow: 2.2; }
+.sp-academy__courses .sp-panel__body { max-width: 44ch; }
+.sp-academy__teacher { font-family: var(--sp-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sp-gold-2); margin: 0.3rem 0 0.9rem; }
+@media (min-width: 761px) {
+  .sp-panels.sp-academy__courses { height: 76svh; min-height: 480px; }
+}
 
-.sp-academy__audience { display: grid; grid-template-columns: 1fr 1.2fr; gap: clamp(2rem, 5vw, 6rem); margin-bottom: clamp(4rem, 9vw, 8rem); }
-.sp-academy__lead { font-size: 0.98rem; line-height: 1.65; margin-top: 1.2rem; max-width: 46ch; opacity: 0.85; }
-.sp-academy__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgba(20, 17, 14, 0.12); }
-.sp-academy__list li { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 1.5rem; padding: 1.2rem 0; border-bottom: 1px solid rgba(20, 17, 14, 0.12); }
-.sp-academy__list-title { font-family: var(--sp-serif); font-size: 1.2rem; line-height: 1.2; }
-.sp-academy__list-text { font-size: 0.92rem; line-height: 1.6; opacity: 0.8; }
-.sp-academy__place .sp-academy__list { margin-top: 2rem; }
-.sp-academy__place .sp-academy__list li { grid-template-columns: 1fr; gap: 0.4rem; }
+/* marquee dei punti chiave (marquee.css del Discover) */
+.sp-marquee.sp-academy__marquee { margin-bottom: clamp(4rem, 9vw, 8rem); border-color: rgba(20, 17, 14, 0.12); }
+
+.sp-academy__num { font-family: var(--sp-mono); font-size: 0.7rem; letter-spacing: 0.14em; opacity: 0.5; }
+.sp-academy__lead { font-size: 0.95rem; line-height: 1.65; margin-top: 1.2rem; max-width: 46ch; opacity: 0.8; }
+
+/* destinatari: righe grandi come l'indice delle opere */
+.sp-academy__audience { margin-bottom: clamp(4rem, 9vw, 8rem); }
+.sp-academy__audience-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; margin-bottom: 2rem; }
+.sp-academy__audience-head .sp-academy__lead { margin-top: 0; }
+.sp-academy__who { list-style: none; margin: 0; padding: 0; }
+.sp-academy__who-item {
+  display: grid; grid-template-columns: 3rem minmax(0, 1fr) minmax(0, 22rem); align-items: baseline; gap: 1.5rem;
+  padding: clamp(1rem, 2.2vw, 1.8rem) 0; border-top: 1px solid rgba(20, 17, 14, 0.12);
+  transition: padding-left 0.5s var(--sp-ease);
+}
+.sp-academy__who-item:last-child { border-bottom: 1px solid rgba(20, 17, 14, 0.12); }
+.sp-academy__who-item:hover { padding-left: 1.4rem; }
+.sp-academy__who-title { font-family: var(--sp-serif); font-size: clamp(1.6rem, 3.6vw, 3rem); line-height: 1.05; }
+.sp-academy__who-text { font-family: var(--sp-mono); font-size: 0.72rem; letter-spacing: 0.06em; line-height: 1.6; opacity: 0.7; }
 
 .sp-academy__contact { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(2rem, 5vw, 6rem); margin-bottom: clamp(4rem, 9vw, 8rem); }
 .sp-academy__h3 { font-size: clamp(1.8rem, 3vw, 2.6rem); line-height: 1.05; margin-top: 1rem; }
 .sp-academy__form .sp-academy__h3 { margin-top: 0; }
+.sp-academy__facts { margin-top: 2rem; }
 .sp-academy__links { font-family: var(--sp-mono); font-size: 0.75rem; letter-spacing: 0.06em; margin-top: 2rem; }
 
 /* Contact Form 7 dentro .sp-form: campi come quelli dei Contatti */
@@ -57,9 +71,12 @@
 .sp-academy__qa summary::-webkit-details-marker { display: none; }
 .sp-academy__qa summary::after { content: "+"; font-family: var(--sp-mono); font-size: 1rem; opacity: 0.6; transition: transform 0.4s var(--sp-ease); }
 .sp-academy__qa[open] summary::after { transform: rotate(45deg); }
+.sp-academy__qa--small summary { font-size: 1.1rem; padding: 1rem 0; }
 .sp-academy__qa p { padding: 0 0 1.4rem; max-width: 60ch; font-size: 0.95rem; line-height: 1.6; opacity: 0.85; }
 
 @media (max-width: 900px) {
-  .sp-academy__intro, .sp-academy__courses, .sp-academy__audience, .sp-academy__contact { grid-template-columns: 1fr; }
-  .sp-academy__list li { grid-template-columns: 1fr; gap: 0.4rem; }
+  .sp-academy__intro, .sp-academy__contact { grid-template-columns: 1fr; }
+  .sp-academy__audience-head { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .sp-academy__who-item { grid-template-columns: 2.2rem minmax(0, 1fr); row-gap: 0.4rem; }
+  .sp-academy__who-text { grid-column: 2; }
 }

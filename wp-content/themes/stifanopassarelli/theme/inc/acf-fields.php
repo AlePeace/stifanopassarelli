@@ -333,8 +333,10 @@ function stifanopassarelli_accademia_fields() {
 		$fields[] = stifanopassarelli_acf( "home_accademia_corsi_{$n}_docente", $prefix . __( 'Docente', 'stifanopassarelli' ), 'text', $corso['docente'] );
 		$fields[] = stifanopassarelli_acf( "home_accademia_corsi_{$n}_impara", $prefix . __( 'Cosa imparerai', 'stifanopassarelli' ), 'textarea', $corso['impara'] );
 		$fields[] = stifanopassarelli_acf( "home_accademia_corsi_{$n}_rivolto", $prefix . __( 'A chi è rivolto', 'stifanopassarelli' ), 'textarea', $corso['rivolto'] );
-		$fields[] = stifanopassarelli_acf_media( "home_accademia_corsi_{$n}_immagine", $prefix . __( 'Immagine (4:3)', 'stifanopassarelli' ) );
+		$fields[] = stifanopassarelli_acf_media( "home_accademia_corsi_{$n}_immagine", $prefix . __( 'Immagine (verticale o 4:3, si vede ritagliata nel pannello)', 'stifanopassarelli' ) );
 	}
+
+	$fields[] = stifanopassarelli_acf( 'home_accademia_marquee', __( 'Punti chiave (marquee, uno per riga)', 'stifanopassarelli' ), 'textarea', $acc['marquee'], array( 'rows' => 6 ) );
 
 	$fields[] = stifanopassarelli_acf( 'home_accademia_destinatari_label', __( 'Destinatari · Label', 'stifanopassarelli' ), 'text', $acc['destinatari_label'] );
 	$fields[] = stifanopassarelli_acf( 'home_accademia_destinatari_testo', __( 'Destinatari · Testo', 'stifanopassarelli' ), 'textarea', $acc['destinatari_testo'] );

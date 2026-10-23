@@ -371,48 +371,57 @@ export function initVeil(scope) {
 	return () => ctx.revert();
 }
 
-/* ------------------------ ORDINARIUM: pannelli espandibili (ref normalis) */
+/* ------------------------ ORDINARIUM: pannelli espandibili (ref normalis)
+   Più gruppi indipendenti nella pagina: Marmo e corsi dell'Accademia. */
 export function initPanels(scope) {
-	const wrap = scope.querySelector('.sp-panels');
-	const panels = wrap ? wrap.querySelectorAll('.sp-panel') : [];
-	if (!panels.length) {
+	const wraps = scope.querySelectorAll('.sp-panels');
+	if (!wraps.length) {
 		return () => {};
 	}
 	let refreshTimer = null;
 
 	const ctx = gsap.context(() => {
-		panels.forEach((p) => {
-			// hover desktop
-			if (!isTouch) {
-				p.addEventListener('mouseenter', () => {
+		wraps.forEach((wrap) => {
+			const panels = wrap.querySelectorAll('.sp-panel');
+			if (!panels.length) {
+				return;
+			}
+			panels.forEach((p) => {
+				// hover desktop
+				if (!isTouch) {
+					p.addEventListener('mouseenter', () => {
+						panels.forEach((x) => x.classList.remove('is-open'));
+						p.classList.add('is-open');
+					});
+				}
+				// click / touch: accordion (ri-clic sul pannello aperto lo richiude)
+				p.addEventListener('click', () => {
+					const wasOpen = p.classList.contains('is-open');
 					panels.forEach((x) => x.classList.remove('is-open'));
-					p.classList.add('is-open');
+					if (!wasOpen) {
+						p.classList.add('is-open');
+					}
+					// su mobile l'altezza della pagina cambia → ricalcolo a transizione finita
+					clearTimeout(refreshTimer);
+					refreshTimer = setTimeout(
+						() => ScrollTrigger.refresh(),
+						700
+					);
+				});
+			});
+			// apertura progressiva legata allo scroll (parte chiuso → si apre il 1°)
+			panels[0].classList.add('is-open');
+			if (!prefersReduced) {
+				ScrollTrigger.create({
+					trigger: wrap,
+					start: 'top 60%',
+					onEnter: () => {
+						panels.forEach((x) => x.classList.remove('is-open'));
+						panels[0].classList.add('is-open');
+					},
 				});
 			}
-			// click / touch: accordion (ri-clic sul pannello aperto lo richiude)
-			p.addEventListener('click', () => {
-				const wasOpen = p.classList.contains('is-open');
-				panels.forEach((x) => x.classList.remove('is-open'));
-				if (!wasOpen) {
-					p.classList.add('is-open');
-				}
-				// su mobile l'altezza della pagina cambia → ricalcolo a transizione finita
-				clearTimeout(refreshTimer);
-				refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 700);
-			});
 		});
-		// apertura progressiva legata allo scroll (parte chiuso → si apre il 1°)
-		panels[0].classList.add('is-open');
-		if (!prefersReduced) {
-			ScrollTrigger.create({
-				trigger: wrap,
-				start: 'top 60%',
-				onEnter: () => {
-					panels.forEach((x) => x.classList.remove('is-open'));
-					panels[0].classList.add('is-open');
-				},
-			});
-		}
 	}, scope);
 
 	return () => {
