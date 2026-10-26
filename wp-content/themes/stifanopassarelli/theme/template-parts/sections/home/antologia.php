@@ -1,12 +1,10 @@
 <?php
 /**
- * 07 — Antologia (\\ MEMORIA E FRAMMENTI): carosello Swiper con slat reveal
- * + indice delle opere con immagine al cursore (ref septiembre).
+ * 07 — Antologia (\\ MEMORIA E FRAMMENTI): carosello Swiper con slat reveal.
  *
  * @package stifanopassarelli
  */
 
-$stifanopassarelli_indice = stifanopassarelli_opere_indice();
 ?>
 <section class="sp-section" id="antologia">
 	<div class="sp-container">
@@ -45,23 +43,4 @@ $stifanopassarelli_indice = stifanopassarelli_opere_indice();
 			</button>
 		</div>
 	</div>
-
-	<?php if ( $stifanopassarelli_indice ) : ?>
-		<!-- Indice opere con hover→immagine (ref Septiembre) -->
-		<div class="sp-container mt-24">
-			<span class="sp-label mb-6 block"><?php stifanopassarelli_the_field( 'home_antologia_indice_label', __( 'Indice delle opere', 'stifanopassarelli' ) ); ?></span>
-			<div class="sp-index">
-				<ul class="sp-index__list">
-					<?php foreach ( $stifanopassarelli_indice as $stifanopassarelli_opera ) : ?>
-						<li class="sp-index__item"><a class="sp-index__link" href="<?php echo esc_url( stifanopassarelli_home_anchor( $stifanopassarelli_opera['anchor'] ) ); ?>" data-cursor="view" data-cursor-label="<?php esc_attr_e( 'Vedi', 'stifanopassarelli' ); ?>"><span class="sp-index__name"><?php echo esc_html( $stifanopassarelli_opera['title'] ); ?></span><span class="sp-index__year"><?php echo esc_html( $stifanopassarelli_opera['etichetta'] ); ?></span></a></li>
-					<?php endforeach; ?>
-				</ul>
-				<div class="sp-index__mediaWrap">
-					<?php foreach ( $stifanopassarelli_indice as $stifanopassarelli_opera ) : ?>
-						<div class="sp-index__media"><?php stifanopassarelli_opera_img( $stifanopassarelli_opera, '', '' ); ?></div>
-					<?php endforeach; ?>
-				</div>
-			</div>
-		</div>
-	<?php endif; ?>
 </section>

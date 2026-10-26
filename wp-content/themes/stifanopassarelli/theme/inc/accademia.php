@@ -17,7 +17,7 @@ function stifanopassarelli_accademia() {
 	return array(
 		'label'             => __( 'Formazione & laboratorio', 'stifanopassarelli' ),
 		'eyebrow'           => __( '08 — Accademia', 'stifanopassarelli' ),
-		'titolo'            => __( "Accademia\nStifano Passarelli", 'stifanopassarelli' ),
+		'titolo'            => __( "Scuola D’Arte\nStifano Passarelli", 'stifanopassarelli' ),
 		'sottotitolo'       => __( "Plasmare la terra, ricomporre la luce. La maestrìa dell'argilla e del mosaico.", 'stifanopassarelli' ),
 		'intro'             => __( "La Scuola d'Arte Stifano Passarelli è un laboratorio formativo dedicato all'insegnamento delle tecniche tradizionali e contemporanee della ceramica e del mosaico.\nI nostri corsi sono pensati per persone di qualsiasi età e livello di preparazione. Dai principianti che desiderano avvicinarsi per la prima volta alla lavorazione manuale, fino a chi vuole approfondire una passione o acquisire nuove competenze artistiche e artigianali.", 'stifanopassarelli' ),
 		'corsi_label'       => __( 'I corsi didattici', 'stifanopassarelli' ),

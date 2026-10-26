@@ -1,5 +1,6 @@
 import Swiper from 'swiper';
 import { Keyboard, Navigation } from 'swiper/modules';
+import { prefersReduced } from './env.js';
 
 /**
  * Carosello Antologia. Le frecce vivono fuori dal contenitore .swiper
@@ -37,4 +38,64 @@ export function initCarousels(scope) {
 	);
 
 	return () => swipers.forEach((swiper) => swiper.destroy(true, true));
+}
+
+/**
+ * Righe a scorrimento nativo (Mosaico su mobile) con le frecce dell'Antologia:
+ * ogni click scorre di un'opera (lo scroll-snap la allinea); la freccia non
+ * utilizzabile prende .swiper-button-disabled come con Swiper.
+ *
+ * @param {Element} scope Container Barba.
+ * @return {Function} Cleanup.
+ */
+export function initScrollers(scope) {
+	const cleanups = Array.from(scope.querySelectorAll('[data-scroller]')).map(
+		(el) => {
+			const nav = el.parentElement.querySelector('.sp-swiper-nav');
+			if (!nav) {
+				return () => {};
+			}
+			const prev = nav.querySelector('.sp-swiper-btn--prev');
+			const next = nav.querySelector('.sp-swiper-btn--next');
+			const step = () => {
+				const items = el.children;
+				return items.length > 1
+					? items[1].offsetLeft - items[0].offsetLeft
+					: el.clientWidth;
+			};
+			const go = (dir) =>
+				el.scrollBy({
+					left: dir * step(),
+					behavior: prefersReduced ? 'auto' : 'smooth',
+				});
+			const onPrev = () => go(-1);
+			const onNext = () => go(1);
+			const update = () => {
+				const max = el.scrollWidth - el.clientWidth;
+				prev.classList.toggle(
+					'swiper-button-disabled',
+					el.scrollLeft <= 1
+				);
+				next.classList.toggle(
+					'swiper-button-disabled',
+					el.scrollLeft >= max - 1
+				);
+			};
+
+			prev.addEventListener('click', onPrev);
+			next.addEventListener('click', onNext);
+			el.addEventListener('scroll', update, { passive: true });
+			window.addEventListener('resize', update);
+			update();
+
+			return () => {
+				prev.removeEventListener('click', onPrev);
+				next.removeEventListener('click', onNext);
+				el.removeEventListener('scroll', update);
+				window.removeEventListener('resize', update);
+			};
+		}
+	);
+
+	return () => cleanups.forEach((cleanup) => cleanup());
 }

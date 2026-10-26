@@ -26,17 +26,20 @@
 .sp-academy__num { font-family: var(--sp-mono); font-size: 0.7rem; letter-spacing: 0.14em; opacity: 0.5; }
 .sp-academy__lead { font-size: 0.95rem; line-height: 1.65; margin-top: 1.2rem; max-width: 46ch; opacity: 0.8; }
 
-/* destinatari: righe grandi come l'indice delle opere */
-.sp-academy__audience { margin-bottom: clamp(4rem, 9vw, 8rem); }
+/* destinatari: fascia scura (.sp-dark) a tutta larghezza per staccarli dal resto dell'Accademia, righe grandi */
+.sp-academy__audience {
+  margin: 0 calc(-1 * var(--sp-gutter)) clamp(4rem, 9vw, 8rem);
+  padding: clamp(4rem, 9vw, 8rem) var(--sp-gutter);
+}
 .sp-academy__audience-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; margin-bottom: 2rem; }
 .sp-academy__audience-head .sp-academy__lead { margin-top: 0; }
 .sp-academy__who { list-style: none; margin: 0; padding: 0; }
 .sp-academy__who-item {
   display: grid; grid-template-columns: 3rem minmax(0, 1fr) minmax(0, 22rem); align-items: baseline; gap: 1.5rem;
-  padding: clamp(1rem, 2.2vw, 1.8rem) 0; border-top: 1px solid rgba(20, 17, 14, 0.12);
+  padding: clamp(1rem, 2.2vw, 1.8rem) 0; border-top: 1px solid rgba(237, 233, 225, 0.16);
   transition: padding-left 0.5s var(--sp-ease);
 }
-.sp-academy__who-item:last-child { border-bottom: 1px solid rgba(20, 17, 14, 0.12); }
+.sp-academy__who-item:last-child { border-bottom: 1px solid rgba(237, 233, 225, 0.16); }
 .sp-academy__who-item:hover { padding-left: 1.4rem; }
 .sp-academy__who-title { font-family: var(--sp-serif); font-size: clamp(1.6rem, 3.6vw, 3rem); line-height: 1.05; }
 .sp-academy__who-text { font-family: var(--sp-mono); font-size: 0.72rem; letter-spacing: 0.06em; line-height: 1.6; opacity: 0.7; }

@@ -5,7 +5,7 @@
  * collezione, l'anno diventa la data del post.
  *
  * Ogni opera: `slug`, `title`, `collezione`, `anno`, `image` (path in assets/),
- * `fields` (ACF). Senza `opera_in_indice` l'opera va nell'indice.
+ * `fields` (ACF).
  *
  * @package stifanopassarelli
  */
@@ -132,8 +132,7 @@ return array(
 		'anno'       => 2025,
 		'image'      => 'img/antologia/bacco.jpg',
 		'fields'     => array(
-			'opera_nota'             => "Agosto 2025 — l'Atto Zero",
-			'opera_indice_etichetta' => 'Antologia · 2025',
+			'opera_nota' => "Agosto 2025 — l'Atto Zero",
 		),
 	),
 	array(
@@ -143,8 +142,7 @@ return array(
 		'anno'       => 2025,
 		'image'      => 'img/antologia/san_bartolomeo.jpg',
 		'fields'     => array(
-			'opera_nota'             => 'Pellare — la lotta con il marmo',
-			'opera_indice_etichetta' => 'Antologia · Pellare',
+			'opera_nota' => 'Pellare — la lotta con il marmo',
 		),
 	),
 	array(
@@ -154,8 +152,7 @@ return array(
 		'anno'       => 2025,
 		'image'      => 'img/antologia/oltre_minerale.jpg',
 		'fields'     => array(
-			'opera_nota'      => 'Frammento monumentale',
-			'opera_in_indice' => 0,
+			'opera_nota' => 'Frammento monumentale',
 		),
 	),
 	array(
@@ -164,9 +161,7 @@ return array(
 		'collezione' => 'antologia',
 		'anno'       => 2025,
 		'image'      => 'img/opere/anthea.jpg',
-		'fields'     => array(
-			'opera_indice_etichetta' => 'Antologia',
-		),
+		'fields'     => array(),
 	),
 	array(
 		'slug'       => 'spigolatrice',
@@ -185,10 +180,9 @@ return array(
 		'anno'       => 2025,
 		'image'      => 'img/works/pos-03.jpg',
 		'fields'     => array(
-			'opera_nota'             => 'La Moka — La liturgia del risveglio.',
-			'opera_sottotitolo'      => 'La Moka — La liturgia del risveglio.',
-			'opera_descrizione'      => 'Il gesto quotidiano si fa nicchia votiva: il risveglio come primo rito del giorno.',
-			'opera_indice_etichetta' => 'Ordinarium · 2025',
+			'opera_nota'        => 'La Moka — La liturgia del risveglio.',
+			'opera_sottotitolo' => 'La Moka — La liturgia del risveglio.',
+			'opera_descrizione' => 'Il gesto quotidiano si fa nicchia votiva: il risveglio come primo rito del giorno.',
 		),
 	),
 );

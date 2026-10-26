@@ -108,7 +108,7 @@ function stifanopassarelli_import_opere() {
 
 		wp_set_object_terms( $post_id, $opera['collezione'], 'collezione' );
 
-		foreach ( array_merge( array( 'opera_in_indice' => 1 ), $opera['fields'] ) as $name => $value ) {
+		foreach ( $opera['fields'] as $name => $value ) {
 			if ( function_exists( 'update_field' ) ) {
 				update_field( $name, $value, $post_id );
 			} else {

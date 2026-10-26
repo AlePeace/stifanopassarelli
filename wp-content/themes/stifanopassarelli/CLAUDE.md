@@ -91,7 +91,7 @@ stifanopassarelli/
 
 - Fuori dal container (init una tantum al `DOMContentLoaded`): Lenis, cursore (hover via delegation sul document), header, reveal del footer, preloader (solo al primo caricamento).
 - Trigger persistenti: `header-hide`, `footer-reveal` (`PERSISTENT_TRIGGERS` in `script.js`); gli altri vengono uccisi in `afterLeave`.
-- View `home`: `initHero`, `initReveals`, `initSlats`, `initVeil`, `initPanels`, `initIndexHover`, `initNegative`, `initMarquee`, `initCarousels`, `initDetails` (FAQ → `ScrollTrigger.refresh`). Ognuna è scoped al container e ritorna una cleanup (gsap.context + listener su window + cloni del marquee).
+- View `home`: `initHero`, `initReveals`, `initSlats`, `initVeil`, `initPanels`, `initNegative`, `initMarquee`, `initCarousels`, `initScrollers` (frecce del Mosaico su mobile, scroll nativo), `initDetails` (FAQ → `ScrollTrigger.refresh`). Ognuna è scoped al container e ritorna una cleanup (gsap.context + listener su window + cloni del marquee).
 - CF7: al primo caricamento i form li inizializza il plugin; dopo una navigazione Barba li inizializza `initForms` (`utils/forms.js`).
 - Lenis con le opzioni della bozza, `anchors: true`; con `prefers-reduced-motion` **niente Lenis** (come nella bozza), quindi `getLenis()` può essere `null`.
 - Work in progress: resta `position: sticky` come nella bozza (niente pin GSAP). Per variare il collage `initVeil` usa `data-set` sulle foto (= cartella dello shooting della foto di default).
@@ -101,15 +101,15 @@ stifanopassarelli/
 
 - **Homepage** (location `front_page`): un tab per sezione. Ogni campo vuoto mostra la copy/foto della bozza (fallback nei template = `default_value` del campo).
 - **Work in progress**: 16 campi immagine `home_wip_col_{1-4}_foto_{1-4}`; colonne/velocità in `stifanopassarelli_wip_columns()`.
-- **Opere** (CPT `opera`, archivio `/opere/`, tassonomia `collezione`: `marmo` (ex `ordinarium`), `mosaico`, `antologia`). Immagine = immagine in evidenza. Ordine = "Ordine" negli attributi; la data del post = anno dell'opera (serve all'etichetta dell'indice). Campi: `opera_sottotitolo`, `opera_descrizione`, `opera_tecnica`, `opera_anno_luogo` (Marmo, Mosaico), `opera_nota` (Antologia), `opera_in_indice`, `opera_indice_etichetta` (vuoto = "Collezione · anno").
+- **Opere** (CPT `opera`, archivio `/opere/`, tassonomia `collezione`: `marmo` (ex `ordinarium`), `mosaico`, `antologia`). Immagine = immagine in evidenza. Ordine = "Ordine" negli attributi; la data del post = anno dell'opera. Campi: `opera_sottotitolo`, `opera_descrizione`, `opera_tecnica`, `opera_anno_luogo` (Marmo, Mosaico), `opera_nota` (Antologia), `opera_inquadratura`.
   - Le 15 opere sono nel CPT (5 marmo, 4 mosaico, 6 antologia: le 4 della bozza con "Il Rito della Forma" → Anthea, la Spigolatrice e in coda Aedicula, ex Ordinarium). Sacellum, Fenesta e Centriello tolti su richiesta del cliente (nel cestino in locale).
   - Su un sito nuovo (es. stifanopassarelli.art/preview, installazione manuale senza migrare il DB): Opere > **Importa contenuti** crea collezioni, opere con foto (da `content/opere.php`) e il modulo CF7 dell'Accademia collegato alla Home. Salta ciò che esiste già. Se si cambia un'opera in locale va aggiornato anche `content/opere.php`.
   - Senza opere pubblicate: l'Antologia mostra quelle della bozza (`stifanopassarelli_opere_bozza()`, con Aedicula in coda); Marmo e Mosaico non compaiono.
-  - L'indice = opere con "Mostra nell'indice": Marmo, Mosaico, Antologia; link all'ancora della sezione.
-- **Accademia** (`#accademia`, fondo chiaro): copy in `stifanopassarelli_accademia()`, campi `home_accademia_*`; form = shortcode CF7 in `home_accademia_form`. Per non fare muro di testo riusa i pattern del sito: sottotitolo con reveal parola per parola, corsi nei pannelli espandibili del Marmo (`initPanels` gestisce tutti i `.sp-panels` della pagina), marquee dei punti chiave (`home_accademia_marquee`, uno per riga), destinatari a righe grandi tipo indice, info della sede in `<details>` come le FAQ. Le foto dei corsi di default sono `il_rito_della_forma.jpg` e `carla.jpg`.
-- **Impostazioni globali** (pagina slug `impostazioni-globali`, redirect 301 alla home dal front end): social (Contatti) e footer.
+  - L'indice delle opere (ref septiembre) è stato tolto su richiesta della PM (ottobre 2026).
+- **Accademia** (`#accademia`, fondo chiaro): copy in `stifanopassarelli_accademia()`, campi `home_accademia_*`; form = shortcode CF7 in `home_accademia_form`. Per non fare muro di testo riusa i pattern del sito: sottotitolo con reveal parola per parola, corsi nei pannelli espandibili del Marmo (`initPanels` gestisce tutti i `.sp-panels` della pagina), marquee dei punti chiave (`home_accademia_marquee`, uno per riga), destinatari a righe grandi in una fascia scura (`.sp-dark`) a tutta larghezza, info della sede in `<details>` come le FAQ. Le foto dei corsi di default sono `il_rito_della_forma.jpg` e `carla.jpg`.
+- **Impostazioni globali** (pagina slug `impostazioni-globali`, redirect 301 alla home dal front end): social (link nella sede dell'Accademia) e footer.
 - **Nav header**: menu nella posizione "Header" se assegnato, altrimenti le ancore della bozza (`#…` sulla home, `home_url('/#…')` altrove).
-- **Contatti**: campo `home_contatti_form` = shortcode (es. CF7). Se è vuoto resta il form della bozza, che non invia nulla.
+- **Contatti**: campo `home_contatti_form` = shortcode (es. CF7). Se è vuoto resta il form della bozza, che non invia nulla. Il blocco laboratorio/galleria/social a destra del form è stato tolto su richiesta della PM.
 
 ## TODO (dalla bozza + porting)
 

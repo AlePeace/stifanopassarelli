@@ -4,12 +4,11 @@ import {
 	initSlats,
 	initVeil,
 	initPanels,
-	initIndexHover,
 	initNegative,
 	initMarquee,
 	initDetails,
 } from '../utils/animations.js';
-import { initCarousels } from '../utils/slider.js';
+import { initCarousels, initScrollers } from '../utils/slider.js';
 import { initForms } from '../utils/forms.js';
 
 let cleanups = [];
@@ -29,10 +28,10 @@ export default {
 			initSlats(scope),
 			initVeil(scope),
 			initPanels(scope),
-			initIndexHover(scope),
 			initNegative(scope),
 			initMarquee(scope),
 			initCarousels(scope),
+			initScrollers(scope),
 			initDetails(scope),
 		];
 	},

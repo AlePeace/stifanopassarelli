@@ -74,8 +74,8 @@ $stifanopassarelli_words = preg_split( '/\s+/', trim( stifanopassarelli_field( '
 		</div>
 	</div>
 
-	<div class="sp-container">
-		<div class="sp-academy__audience">
+	<div class="sp-academy__audience sp-dark">
+		<div class="sp-container">
 			<div class="sp-academy__audience-head">
 				<span class="sp-label"><?php stifanopassarelli_the_field( 'home_accademia_destinatari_label', $stifanopassarelli_acc['destinatari_label'] ); ?></span>
 				<p class="sp-academy__lead"><?php stifanopassarelli_the_field( 'home_accademia_destinatari_testo', $stifanopassarelli_acc['destinatari_testo'] ); ?></p>
@@ -90,7 +90,9 @@ $stifanopassarelli_words = preg_split( '/\s+/', trim( stifanopassarelli_field( '
 				<?php endforeach; ?>
 			</ol>
 		</div>
+	</div>
 
+	<div class="sp-container">
 		<div class="sp-academy__contact">
 			<div class="sp-academy__place">
 				<span class="sp-label"><?php stifanopassarelli_the_field( 'home_accademia_sede_label', $stifanopassarelli_acc['sede_label'] ); ?></span>

@@ -171,8 +171,8 @@ function stifanopassarelli_wip_columns() {
 }
 
 /**
- * Field group della homepage: un tab per sezione. Le opere di Marmo, Mosaico,
- * Antologia e dell'indice arrivano dal CPT "Opere" (inc/opere.php).
+ * Field group della homepage: un tab per sezione. Le opere di Marmo, Mosaico e
+ * Antologia arrivano dal CPT "Opere" (inc/opere.php).
  */
 function stifanopassarelli_register_home_fields() {
 	$wip_fields = array();
@@ -265,13 +265,12 @@ function stifanopassarelli_register_home_fields() {
 					stifanopassarelli_acf_tab( 'home_antologia', __( 'Antologia', 'stifanopassarelli' ) ),
 					stifanopassarelli_acf( 'home_antologia_label', __( 'Label', 'stifanopassarelli' ), 'text', __( 'Memoria e Frammenti', 'stifanopassarelli' ) ),
 					stifanopassarelli_acf( 'home_antologia_eyebrow', __( 'Eyebrow', 'stifanopassarelli' ), 'text', __( '05 — Antologia · le altre opere', 'stifanopassarelli' ) ),
-					stifanopassarelli_acf( 'home_antologia_indice_label', __( "Label dell'indice", 'stifanopassarelli' ), 'text', __( 'Indice delle opere', 'stifanopassarelli' ) ),
 					array(
 						'key'     => 'field_home_antologia_note',
 						'label'   => __( 'Opere', 'stifanopassarelli' ),
 						'name'    => '',
 						'type'    => 'message',
-						'message' => __( 'Il carosello mostra le Opere della collezione "Antologia"; l\'indice tutte le Opere con "Mostra nell\'indice" attivo (Marmo, Mosaico, poi Antologia).', 'stifanopassarelli' ),
+						'message' => __( 'Il carosello mostra le Opere della collezione "Antologia".', 'stifanopassarelli' ),
 					),
 
 					stifanopassarelli_acf_tab( 'home_artisti', __( 'Gli Artisti', 'stifanopassarelli' ) ),
@@ -297,10 +296,6 @@ function stifanopassarelli_register_home_fields() {
 					stifanopassarelli_acf( 'home_contatti_label', __( 'Label', 'stifanopassarelli' ), 'text', __( 'Risonanze', 'stifanopassarelli' ) ),
 					stifanopassarelli_acf( 'home_contatti_eyebrow', __( 'Eyebrow', 'stifanopassarelli' ), 'text', __( '09 — Contatti & Gallerie', 'stifanopassarelli' ) ),
 					stifanopassarelli_acf( 'home_contatti_form', __( 'Shortcode del form (es. Contact Form 7)', 'stifanopassarelli' ), 'text', '', array( 'instructions' => __( 'Vuoto = il form della bozza, che non invia nulla.', 'stifanopassarelli' ) ) ),
-					stifanopassarelli_acf( 'home_contatti_laboratorio_label', __( 'Laboratorio · Label', 'stifanopassarelli' ), 'text', __( 'Il laboratorio', 'stifanopassarelli' ) ),
-					stifanopassarelli_acf( 'home_contatti_laboratorio', __( 'Laboratorio · Luogo', 'stifanopassarelli' ), 'text', __( 'Pellare (SA)', 'stifanopassarelli' ) ),
-					stifanopassarelli_acf( 'home_contatti_galleria_label', __( 'Galleria · Label', 'stifanopassarelli' ), 'text', __( 'Galleria espositiva', 'stifanopassarelli' ) ),
-					stifanopassarelli_acf( 'home_contatti_galleria', __( 'Galleria · Luogo', 'stifanopassarelli' ), 'text', __( 'Positano', 'stifanopassarelli' ) ),
 				)
 			),
 		)

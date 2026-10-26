@@ -2,8 +2,9 @@
 /**
  * 06 — Il Mosaico (\\ LA DEDIZIONE): titolo verticale e colonne sfalsate con
  * numerazione grande (ref editoriale Pinterest del cliente), slat reveal sulle
- * foto. Su mobile le colonne diventano una riga a scorrimento orizzontale. Le
- * opere sono quelle della collezione "mosaico" (inc/opere.php).
+ * foto. Su mobile le colonne diventano una riga a scorrimento orizzontale con
+ * le frecce dell'Antologia (initScrollers). Le opere sono quelle della
+ * collezione "mosaico" (inc/opere.php).
  *
  * @package stifanopassarelli
  */
@@ -27,7 +28,7 @@ if ( ! $stifanopassarelli_opere ) {
 				<p class="sp-mosaic__intro" data-fade><?php stifanopassarelli_the_field( 'home_mosaico_testo', __( 'Dalla rigida disciplina bizantina appresa a Ravenna alla libertà espressiva nel laboratorio di Acquavella. Un rito lento di ricomposizione del mondo.', 'stifanopassarelli' ) ); ?></p>
 			</div>
 
-			<div class="sp-mosaic__works">
+			<div class="sp-mosaic__works" data-scroller>
 				<?php foreach ( $stifanopassarelli_opere as $stifanopassarelli_i => $stifanopassarelli_opera ) : ?>
 					<article class="sp-mosaic__work">
 						<span class="sp-mosaic__num"><?php echo esc_html( sprintf( '%02d', $stifanopassarelli_i + 1 ) ); ?></span>
@@ -50,6 +51,16 @@ if ( ! $stifanopassarelli_opere ) {
 						<?php endif; ?>
 					</article>
 				<?php endforeach; ?>
+			</div>
+
+			<!-- frecce solo su mobile (riga a scorrimento): come quelle dell'Antologia -->
+			<div class="sp-swiper-nav sp-mosaic__nav">
+				<button class="sp-swiper-btn sp-swiper-btn--prev" type="button" aria-label="<?php esc_attr_e( 'Opera precedente', 'stifanopassarelli' ); ?>">
+					<svg viewBox="0 0 40 12" fill="none" aria-hidden="true"><path d="M40 6H1M1 6l6-5M1 6l6 5" stroke="currentColor" stroke-width="1"/></svg>
+				</button>
+				<button class="sp-swiper-btn sp-swiper-btn--next" type="button" aria-label="<?php esc_attr_e( 'Opera successiva', 'stifanopassarelli' ); ?>">
+					<svg viewBox="0 0 40 12" fill="none" aria-hidden="true"><path d="M0 6h39M39 6l-6-5M39 6l-6 5" stroke="currentColor" stroke-width="1"/></svg>
+				</button>
 			</div>
 		</div>
 	</div>

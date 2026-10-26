@@ -2,8 +2,8 @@
 /**
  * CPT "Opere" + tassonomia "Collezioni" (Marmo, Mosaico, Antologia).
  *
- * In homepage le opere riempiono i pannelli del Marmo, le colonne del Mosaico,
- * il carosello dell'Antologia e l'indice. Finché nel CMS non c'è nessuna opera
+ * In homepage le opere riempiono i pannelli del Marmo, le colonne del Mosaico
+ * e il carosello dell'Antologia. Finché nel CMS non c'è nessuna opera
  * dell'Antologia si vedono le opere della bozza (stifanopassarelli_opere_bozza());
  * Marmo e Mosaico non hanno fallback: senza opere la sezione non compare.
  *
@@ -63,23 +63,20 @@ function stifanopassarelli_register_opere() {
 add_action( 'init', 'stifanopassarelli_register_opere' );
 
 /**
- * Le collezioni della homepage: slug => nome e sezione di destinazione.
+ * Le collezioni della homepage: slug => nome.
  *
  * @return array[]
  */
 function stifanopassarelli_collezioni() {
 	return array(
 		'marmo'     => array(
-			'name'   => __( 'Marmo', 'stifanopassarelli' ),
-			'anchor' => 'marmo',
+			'name' => __( 'Marmo', 'stifanopassarelli' ),
 		),
 		'mosaico'   => array(
-			'name'   => __( 'Mosaico', 'stifanopassarelli' ),
-			'anchor' => 'mosaico',
+			'name' => __( 'Mosaico', 'stifanopassarelli' ),
 		),
 		'antologia' => array(
-			'name'   => __( 'Antologia', 'stifanopassarelli' ),
-			'anchor' => 'antologia',
+			'name' => __( 'Antologia', 'stifanopassarelli' ),
 		),
 	);
 }
@@ -124,15 +121,6 @@ function stifanopassarelli_register_opera_fields() {
 					)
 				),
 				stifanopassarelli_acf( 'opera_nota', __( 'Nota (Antologia)', 'stifanopassarelli' ), 'text', '', array( 'instructions' => __( 'Riga sotto il titolo nel carosello, es. "Agosto 2025 — l\'Atto Zero".', 'stifanopassarelli' ) ) ),
-				array(
-					'key'           => 'field_opera_in_indice',
-					'name'          => 'opera_in_indice',
-					'label'         => __( "Mostra nell'indice delle opere", 'stifanopassarelli' ),
-					'type'          => 'true_false',
-					'ui'            => 1,
-					'default_value' => 1,
-				),
-				stifanopassarelli_acf( 'opera_indice_etichetta', __( "Etichetta nell'indice", 'stifanopassarelli' ), 'text', '', array( 'instructions' => __( 'Vuoto = "Collezione · anno di pubblicazione", es. "Marmo · 2023".', 'stifanopassarelli' ) ) ),
 			),
 		)
 	);
@@ -147,7 +135,7 @@ add_action( 'acf/init', 'stifanopassarelli_register_opera_fields' );
  *
  * @return array[] Ogni opera ha `title`, `image_id`, `image_src`, `alt`,
  *                 `sottotitolo`, `descrizione`, `tecnica`, `anno_luogo`,
- *                 `nota`, `in_indice`, `etichetta`, `anchor`.
+ *                 `nota`, `inquadratura`.
  */
 function stifanopassarelli_opere( $collezione ) {
 	$query = new WP_Query(
@@ -173,14 +161,9 @@ function stifanopassarelli_opere( $collezione ) {
 		return stifanopassarelli_opere_bozza( $collezione );
 	}
 
-	$collezioni = stifanopassarelli_collezioni();
-	$name       = isset( $collezioni[ $collezione ] ) ? $collezioni[ $collezione ]['name'] : '';
-	$anchor     = isset( $collezioni[ $collezione ] ) ? $collezioni[ $collezione ]['anchor'] : $collezione;
-
 	return array_map(
-		function ( $post ) use ( $name, $anchor ) {
-			$image_id  = (int) get_post_thumbnail_id( $post );
-			$in_indice = function_exists( 'get_field' ) ? get_field( 'opera_in_indice', $post->ID ) : true;
+		function ( $post ) {
+			$image_id = (int) get_post_thumbnail_id( $post );
 
 			return array(
 				'title'        => get_the_title( $post ),
@@ -193,34 +176,9 @@ function stifanopassarelli_opere( $collezione ) {
 				'anno_luogo'   => stifanopassarelli_field( 'opera_anno_luogo', '', $post->ID ),
 				'nota'         => stifanopassarelli_field( 'opera_nota', '', $post->ID ),
 				'inquadratura' => stifanopassarelli_field( 'opera_inquadratura', 'center', $post->ID ),
-				'in_indice'    => null === $in_indice || (bool) $in_indice,
-				'etichetta'    => stifanopassarelli_field( 'opera_indice_etichetta', $name . ' · ' . get_the_date( 'Y', $post ), $post->ID ),
-				'anchor'       => $anchor,
 			);
 		},
 		$query->posts
-	);
-}
-
-/**
- * Opere dell'indice: Marmo, Mosaico e Antologia, solo quelle con
- * "Mostra nell'indice".
- *
- * @return array[]
- */
-function stifanopassarelli_opere_indice() {
-	$opere = array();
-	foreach ( array_keys( stifanopassarelli_collezioni() ) as $collezione ) {
-		$opere = array_merge( $opere, stifanopassarelli_opere( $collezione ) );
-	}
-
-	return array_values(
-		array_filter(
-			$opere,
-			function ( $opera ) {
-				return $opera['in_indice'];
-			}
-		)
 	);
 }
 
@@ -272,7 +230,7 @@ function stifanopassarelli_opera_img( $opera, $class = '', $alt = null ) {
  * @return array[]
  */
 function stifanopassarelli_opere_bozza( $collezione ) {
-	$opera = function ( $title, $image_src, $alt, $extra ) use ( $collezione ) {
+	$opera = function ( $title, $image_src, $alt, $extra ) {
 		return array_merge(
 			array(
 				'title'        => $title,
@@ -285,9 +243,6 @@ function stifanopassarelli_opere_bozza( $collezione ) {
 				'anno_luogo'   => '',
 				'nota'         => '',
 				'inquadratura' => '',
-				'in_indice'    => false,
-				'etichetta'    => '',
-				'anchor'       => $collezione,
 			),
 			$extra
 		);
@@ -304,21 +259,13 @@ function stifanopassarelli_opere_bozza( $collezione ) {
 			__( 'Bacco', 'stifanopassarelli' ),
 			'img/antologia/bacco.jpg',
 			__( 'Bacco', 'stifanopassarelli' ),
-			array(
-				'nota'      => __( "Agosto 2025 — l'Atto Zero", 'stifanopassarelli' ),
-				'in_indice' => true,
-				'etichetta' => __( 'Antologia · 2025', 'stifanopassarelli' ),
-			)
+			array( 'nota' => __( "Agosto 2025 — l'Atto Zero", 'stifanopassarelli' ) )
 		),
 		$opera(
 			__( 'San Bartolomeo', 'stifanopassarelli' ),
 			'img/antologia/san_bartolomeo.jpg',
 			__( 'San Bartolomeo', 'stifanopassarelli' ),
-			array(
-				'nota'      => __( 'Pellare — la lotta con il marmo', 'stifanopassarelli' ),
-				'in_indice' => true,
-				'etichetta' => __( 'Antologia · Pellare', 'stifanopassarelli' ),
-			)
+			array( 'nota' => __( 'Pellare — la lotta con il marmo', 'stifanopassarelli' ) )
 		),
 		$opera(
 			__( 'Oltre il Minerale', 'stifanopassarelli' ),
@@ -336,11 +283,7 @@ function stifanopassarelli_opere_bozza( $collezione ) {
 			__( 'Aedicula', 'stifanopassarelli' ),
 			'img/works/pos-03.jpg',
 			__( 'Aedicula — La Moka', 'stifanopassarelli' ),
-			array(
-				'nota'      => __( 'La Moka — La liturgia del risveglio.', 'stifanopassarelli' ),
-				'in_indice' => true,
-				'etichetta' => __( 'Ordinarium · 2025', 'stifanopassarelli' ),
-			)
+			array( 'nota' => __( 'La Moka — La liturgia del risveglio.', 'stifanopassarelli' ) )
 		),
 	);
 }

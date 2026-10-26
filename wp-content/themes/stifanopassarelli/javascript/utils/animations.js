@@ -430,63 +430,6 @@ export function initPanels(scope) {
 	};
 }
 
-/* -------------------- LISTA OPERE hover→immagine al cursore (septiembre) */
-export function initIndexHover(scope) {
-	if (isTouch) {
-		return () => {};
-	}
-	const listeners = [];
-
-	const ctx = gsap.context(() => {
-		scope.querySelectorAll('.sp-index').forEach((idx) => {
-			const items = idx.querySelectorAll('.sp-index__item');
-			const medias = idx.querySelectorAll('.sp-index__media');
-			if (!medias.length) {
-				return;
-			}
-			// ogni immagine è centrata sul cursore (xPercent/yPercent) e lo segue con smoothing
-			gsap.set(medias, { xPercent: -50, yPercent: -50 });
-			const xTo = gsap.quickTo(medias, 'x', {
-				duration: 0.55,
-				ease: 'power3',
-			});
-			const yTo = gsap.quickTo(medias, 'y', {
-				duration: 0.55,
-				ease: 'power3',
-			});
-			const onMove = (e) => {
-				xTo(e.clientX);
-				yTo(e.clientY);
-			};
-			window.addEventListener('mousemove', onMove);
-			listeners.push(onMove);
-			let active = null;
-			items.forEach((it, i) => {
-				it.addEventListener('mouseenter', () => {
-					idx.classList.add('is-hovering');
-					medias.forEach((m) => m.classList.remove('is-active'));
-					active = medias[i];
-					if (active) {
-						active.classList.add('is-active');
-					}
-				});
-				it.addEventListener('mouseleave', () => {
-					idx.classList.remove('is-hovering');
-					if (active) {
-						active.classList.remove('is-active');
-					}
-					active = null;
-				});
-			});
-		});
-	}, scope);
-
-	return () => {
-		listeners.forEach((fn) => window.removeEventListener('mousemove', fn));
-		ctx.revert();
-	};
-}
-
 /* ------------------------------- NEGATIVO: lente invertita al cursore
    Desktop: la lente segue il mouse. Touch: la lente si sposta al tap/drag
    (con easing) e dentro c'è l'etichetta "Click" (vedi .sp-negative__hint). */
